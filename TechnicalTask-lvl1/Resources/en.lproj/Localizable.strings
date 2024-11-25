@@ -7,3 +7,9 @@
 */
 
 "urls.users" = "https://jsonplaceholder.typicode.com/users";
+"coreData.modelName" = "UserPersistenceModel";
+"coreData.entityName" = "User";
+"coreData.attributeUserName" = "userName";
+"coreData.attributeEmail" = "email";
+"coreData.attributeCity" = "city";
+"coreData.attributeStreet" = "street";

@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 final class UsersListViewController: UIViewController {
     
     // MARK: - Parameters
     
     private var viewModel: UsersListViewModelProtocol
+    let networkService: NetworkServiceProtocol = NetworkService()
+    let coreDataService: CoreDataServiceProtocol = CoreDataService()
     
     // MARK: - Initialization
     

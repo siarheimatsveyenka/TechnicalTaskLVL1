@@ -16,6 +16,10 @@
 		49B193432CF48D650083E576 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193422CF48D650083E576 /* UserModel.swift */; };
 		49B193472CF490B50083E576 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193462CF490B50083E576 /* NetworkServiceProtocol.swift */; };
 		49B193492CF490BB0083E576 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193482CF490BB0083E576 /* NetworkService.swift */; };
+		49B193582CF496600083E576 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193572CF496600083E576 /* CoreDataStack.swift */; };
+		49B1935B2CF497490083E576 /* UserPersistenceModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49B193592CF497490083E576 /* UserPersistenceModel.xcdatamodeld */; };
+		49B1935D2CF498A00083E576 /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1935C2CF498A00083E576 /* CoreDataServiceProtocol.swift */; };
+		49B1935F2CF498B10083E576 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1935E2CF498B10083E576 /* CoreDataService.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
@@ -33,6 +37,10 @@
 		49B193422CF48D650083E576 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		49B193462CF490B50083E576 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		49B193482CF490BB0083E576 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		49B193572CF496600083E576 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		49B1935A2CF497490083E576 /* UserPersistenceModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserPersistenceModel.xcdatamodel; sourceTree = "<group>"; };
+		49B1935C2CF498A00083E576 /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
+		49B1935E2CF498B10083E576 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 		49B193442CF490860083E576 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				49B193562CF4964D0083E576 /* PersistenceService */,
 				49B193452CF490A60083E576 /* NetworkService */,
 			);
 			path = Services;
@@ -106,6 +115,16 @@
 				49B1933F2CF48C6A0083E576 /* ResourcesTypealias.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		49B193562CF4964D0083E576 /* PersistenceService */ = {
+			isa = PBXGroup;
+			children = (
+				49B193572CF496600083E576 /* CoreDataStack.swift */,
+				49B1935C2CF498A00083E576 /* CoreDataServiceProtocol.swift */,
+				49B1935E2CF498B10083E576 /* CoreDataService.swift */,
+			);
+			path = PersistenceService;
 			sourceTree = "<group>";
 		};
 		CE9F09082CEF646D00CFA6B5 = {
@@ -141,6 +160,7 @@
 		CE9F09282CEF658B00CFA6B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49B193592CF497490083E576 /* UserPersistenceModel.xcdatamodeld */,
 				49B193372CF486620083E576 /* Strings.swift */,
 				49B193382CF486620083E576 /* XCAssets+Generated.swift */,
 				CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */,
@@ -246,9 +266,13 @@
 				495F5E3F2CF4798F00E6B71A /* UsersListViewModel.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */,
+				49B1935F2CF498B10083E576 /* CoreDataService.swift in Sources */,
+				49B1935B2CF497490083E576 /* UserPersistenceModel.xcdatamodeld in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
+				49B193582CF496600083E576 /* CoreDataStack.swift in Sources */,
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
 				49B193402CF48C6A0083E576 /* ResourcesTypealias.swift in Sources */,
+				49B1935D2CF498A00083E576 /* CoreDataServiceProtocol.swift in Sources */,
 				49B193432CF48D650083E576 /* UserModel.swift in Sources */,
 				49B193472CF490B50083E576 /* NetworkServiceProtocol.swift in Sources */,
 				49B193492CF490BB0083E576 /* NetworkService.swift in Sources */,
@@ -483,6 +507,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		49B193592CF497490083E576 /* UserPersistenceModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49B1935A2CF497490083E576 /* UserPersistenceModel.xcdatamodel */,
+			);
+			currentVersion = 49B1935A2CF497490083E576 /* UserPersistenceModel.xcdatamodel */;
+			path = UserPersistenceModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE9F09092CEF646D00CFA6B5 /* Project object */;
 }

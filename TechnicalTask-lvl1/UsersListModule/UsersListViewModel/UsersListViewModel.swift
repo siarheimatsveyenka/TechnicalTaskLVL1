@@ -9,4 +9,8 @@ import Foundation
 
 final class UsersListViewModel: UsersListViewModelProtocol {
     
+    // MARK: - Parameters
+    
+    var displayData = [UsersListDiplayModel]()
+    
 }

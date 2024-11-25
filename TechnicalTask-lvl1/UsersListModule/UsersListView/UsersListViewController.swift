@@ -30,6 +30,6 @@ final class UsersListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .systemMint
+        self.view.backgroundColor = Asset.Colors.mainBackgroundColor.color
     }
 }

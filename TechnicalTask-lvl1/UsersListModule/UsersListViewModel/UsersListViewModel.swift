@@ -27,11 +27,6 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.loaderIsActivePublisher.eraseToAnyPublisher()
     }
     
-    private let deleteButtonTappedPublisher = PassthroughSubject<Void, Never>()
-    var anyDeleteButtonTappedPublisher: AnyPublisher<Void, Never> {
-        self.deleteButtonTappedPublisher.eraseToAnyPublisher()
-    }
-    
     private let addButtonTappedPublisher = PassthroughSubject<Void, Never>()
     var anyAddButtonTappedPublisher: AnyPublisher<Void, Never> {
         self.addButtonTappedPublisher.eraseToAnyPublisher()
@@ -41,10 +36,6 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     func readyToDisplay() {
         self.startLoaderAnimating()
-    }
-    
-    func deleteButtonTapped() {
-        self.deleteButtonTappedPublisher.send()
     }
     
     func addButtonTapped() {

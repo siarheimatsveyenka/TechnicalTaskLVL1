@@ -9,12 +9,10 @@ import Foundation
 import Combine
 
 protocol UsersListViewModelProtocol {
-    var displayData: [UsersListDiplayModel] { get }
+    var displayData: [UsersListDiplayModel] { get set }
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> { get }
-    var anyDeleteButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     var anyAddButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     
     func readyToDisplay()
-    func deleteButtonTapped()
     func addButtonTapped()
 }

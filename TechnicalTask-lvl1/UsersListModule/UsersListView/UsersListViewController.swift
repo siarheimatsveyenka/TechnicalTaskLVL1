@@ -78,11 +78,6 @@ private extension UsersListViewController {
     
     func setupNavigationBar() {
         self.navigationItem.title = UsersListStrings.navTitle
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .trash,
-            target: self,
-            action: #selector(self.deleteButtonTapped)
-        )
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
@@ -100,8 +95,8 @@ private extension UsersListViewController {
     // MARK: - Constraints
     
     func setConstraints() {
-        self.usersListTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UsersListEdgeInsets.usersList)
+        self.usersListTableView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UsersListEdgeInsets.usersList)
         }
     }
 }
@@ -115,14 +110,6 @@ private extension UsersListViewController {
     }
     
     func bindInput() {
-        self.viewModel.anyDeleteButtonTappedPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                guard let self else { return }
-                self.handleDeleteButtonTapped()
-            }
-            .store(in: &self.cancellables)
-        
         self.viewModel.anyAddButtonTappedPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -146,16 +133,8 @@ private extension UsersListViewController {
 // MARK: - Actions and handlers
 
 private extension UsersListViewController {
-    @objc func deleteButtonTapped() {
-        self.viewModel.deleteButtonTapped()
-    }
-        
     @objc func addButtonTapped() {
         self.viewModel.addButtonTapped()
-    }
-    
-    func handleDeleteButtonTapped() {
-        print("Delete button tapped")
     }
     
     func handleAddButtonTapped() {
@@ -185,6 +164,15 @@ extension UsersListViewController: UITableViewDataSource {
         let user = self.viewModel.displayData[indexPath.row]
         cell.setCellDisplayData(user)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.usersListTableView.beginUpdates()
+            self.viewModel.displayData.remove(at: indexPath.row)
+            self.usersListTableView.deleteRows(at: [indexPath], with: .fade)
+            self.usersListTableView.endUpdates()
+        }
     }
 }
 

@@ -12,3 +12,4 @@ import Foundation
 typealias Colors = Asset.Colors
 typealias ApiUrls = L10n.Urls
 typealias CoreDataStrings = L10n.CoreData
+typealias UsersListStrings = L10n.UsersListScreen

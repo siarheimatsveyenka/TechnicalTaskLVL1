@@ -13,3 +13,5 @@
 "coreData.attributeEmail" = "email";
 "coreData.attributeCity" = "city";
 "coreData.attributeStreet" = "street";
+"usersListScreen.navTitle" = "Users list";
+"usersListScreen.tableViewTitle" = "Users details";

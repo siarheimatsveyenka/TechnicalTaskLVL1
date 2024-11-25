@@ -5,3 +5,5 @@
   Created by Сергей Матвеенко on 25.11.24.
   
 */
+
+"urls.users" = "https://jsonplaceholder.typicode.com/users";

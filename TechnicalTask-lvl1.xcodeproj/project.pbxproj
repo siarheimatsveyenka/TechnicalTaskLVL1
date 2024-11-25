@@ -12,6 +12,10 @@
 		49B193362CF4831D0083E576 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B193342CF4831D0083E576 /* Localizable.strings */; };
 		49B193392CF486620083E576 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193372CF486620083E576 /* Strings.swift */; };
 		49B1933A2CF486620083E576 /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193382CF486620083E576 /* XCAssets+Generated.swift */; };
+		49B193402CF48C6A0083E576 /* ResourcesTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1933F2CF48C6A0083E576 /* ResourcesTypealias.swift */; };
+		49B193432CF48D650083E576 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193422CF48D650083E576 /* UserModel.swift */; };
+		49B193472CF490B50083E576 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193462CF490B50083E576 /* NetworkServiceProtocol.swift */; };
+		49B193492CF490BB0083E576 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193482CF490BB0083E576 /* NetworkService.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
@@ -25,6 +29,10 @@
 		49B193352CF4831D0083E576 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49B193372CF486620083E576 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		49B193382CF486620083E576 /* XCAssets+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
+		49B1933F2CF48C6A0083E576 /* ResourcesTypealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTypealias.swift; sourceTree = "<group>"; };
+		49B193422CF48D650083E576 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		49B193462CF490B50083E576 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		49B193482CF490BB0083E576 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,39 @@
 			path = UsersListViewModel;
 			sourceTree = "<group>";
 		};
+		49B193412CF48D370083E576 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49B193422CF48D650083E576 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		49B193442CF490860083E576 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				49B193452CF490A60083E576 /* NetworkService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		49B193452CF490A60083E576 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				49B193462CF490B50083E576 /* NetworkServiceProtocol.swift */,
+				49B193482CF490BB0083E576 /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		49B1934A2CF493780083E576 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				49B1933F2CF48C6A0083E576 /* ResourcesTypealias.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		CE9F09082CEF646D00CFA6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +127,9 @@
 		CE9F09132CEF646D00CFA6B5 /* TechnicalTask-lvl1 */ = {
 			isa = PBXGroup;
 			children = (
+				49B1934A2CF493780083E576 /* Constants */,
+				49B193442CF490860083E576 /* Services */,
+				49B193412CF48D370083E576 /* Models */,
 				CE9F09292CEF659F00CFA6B5 /* Application */,
 				495F5E322CF4789000E6B71A /* UsersListModule */,
 				CE9F092A2CEF65CA00CFA6B5 /* UserModule */,
@@ -204,6 +248,10 @@
 				495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
+				49B193402CF48C6A0083E576 /* ResourcesTypealias.swift in Sources */,
+				49B193432CF48D650083E576 /* UserModel.swift in Sources */,
+				49B193472CF490B50083E576 /* NetworkServiceProtocol.swift in Sources */,
+				49B193492CF490BB0083E576 /* NetworkService.swift in Sources */,
 				49B1933A2CF486620083E576 /* XCAssets+Generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

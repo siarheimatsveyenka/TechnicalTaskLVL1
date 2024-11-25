@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UsersListViewModelProtocol {
-    
+    var displayData: [UsersListDiplayModel] { get }
 }

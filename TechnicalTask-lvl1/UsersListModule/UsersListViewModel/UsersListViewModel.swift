@@ -12,6 +12,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     // MARK: - Parameters
     
+    private let updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol
     var displayData = [
         UsersListDiplayModel(
             username: "Delphine",
@@ -32,6 +33,17 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.addButtonTappedPublisher.eraseToAnyPublisher()
     }
     
+    private let displayDataUpdatedPublisher = PassthroughSubject<Void, Never>()
+    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<Void, Never> {
+        self.displayDataUpdatedPublisher.eraseToAnyPublisher()
+    }
+    
+    // MARK: - Initialization
+    
+    init(updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol) {
+        self.updatingUsersDataFacade = updatingUsersDataFacade
+    }
+    
     // MARK: - Events
     
     func readyToDisplay() {
@@ -43,7 +55,9 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     }
     
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
-        dump(userInfo)
+        guard !self.displayData.contains(where: { $0.email == userInfo.email } ) else { return }
+        self.displayData.append(userInfo)
+        self.displayDataUpdatedPublisher.send()
     }
 }
 

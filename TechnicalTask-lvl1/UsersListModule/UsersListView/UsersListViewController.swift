@@ -133,6 +133,14 @@ private extension UsersListViewController {
                 self.handleLoaderAnimating(for: isOn)
             }
             .store(in: &self.cancellables)
+        
+        self.viewModel.anyDisplayDataUpdatedPublisherPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                self.usersListTableView.reloadData()
+            }
+            .store(in: &self.cancellables)
     }
 }
 
@@ -146,7 +154,7 @@ private extension UsersListViewController {
     func handleAddButtonTapped() {
         let userViewModel = UserViewModel(inputedDataCheker: ManuallyInputedDataCheker())
         let userViewController = UserViewController(viewModel: userViewModel)
-        
+                
         userViewModel.userInfoClosure = { [weak self] userInfo in
             guard let self else { return }
             self.viewModel.handleAddedManuallyUserInfo(userInfo)

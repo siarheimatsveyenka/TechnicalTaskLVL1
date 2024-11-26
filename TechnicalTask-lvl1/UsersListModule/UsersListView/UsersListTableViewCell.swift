@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
 final class UsersListTableViewCell: UITableViewCell {
     
     // MARK: - Sizes
     
     private enum Sizes {
-        static let headerFontSize: CGFloat = 20
-        static let regularFontSize: CGFloat = 15
-        static let stackViewsOffset: CGFloat = 15
+        static let headerFontSize: CGFloat = 20.0
+        static let regularFontSize: CGFloat = 15.0
+        static let stackViewsOffset: CGFloat = 15.0
+        static let stackViewsSpacing: CGFloat = 10.0
+        static let userEmailWidthCoeff: ConstraintMultiplierTarget = 0.4
     }
     
     // MARK: - GUI
@@ -33,7 +36,7 @@ final class UsersListTableViewCell: UITableViewCell {
     
     private lazy var addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Address:"
+        label.text = UsersListCellStrings.addressLabelTitle
         label.font = .systemFont(ofSize: Sizes.regularFontSize, weight: .bold)
         return label
     }()
@@ -73,7 +76,7 @@ final class UsersListTableViewCell: UITableViewCell {
         )
         
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = Sizes.stackViewsSpacing
         return stackView
     }()
     
@@ -119,7 +122,7 @@ private extension UsersListTableViewCell {
             if let neededWidth = self.userEmailLabel.text?.widthForText() {
                 $0.width.equalTo(neededWidth)
             } else {
-                $0.width.equalToSuperview().dividedBy(2.5)
+                $0.width.equalToSuperview().multipliedBy(Sizes.userEmailWidthCoeff)
             }
         }
         

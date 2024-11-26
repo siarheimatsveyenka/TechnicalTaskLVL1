@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4949D66D2CF522F00070E932 /* InternetConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D66C2CF522F00070E932 /* InternetConnectionService.swift */; };
 		4949D66F2CF526F60070E932 /* InternetCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D66E2CF526F60070E932 /* InternetCheckable.swift */; };
+		4949D67B2CF5286A0070E932 /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67A2CF5286A0070E932 /* UserViewModelProtocol.swift */; };
+		4949D67D2CF528890070E932 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67C2CF528890070E932 /* UserViewModel.swift */; };
+		4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */; };
+		4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */; };
 		495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */; };
 		495F5E3F2CF4798F00E6B71A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */; };
 		49B193362CF4831D0083E576 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B193342CF4831D0083E576 /* Localizable.strings */; };
@@ -38,6 +42,10 @@
 /* Begin PBXFileReference section */
 		4949D66C2CF522F00070E932 /* InternetConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionService.swift; sourceTree = "<group>"; };
 		4949D66E2CF526F60070E932 /* InternetCheckable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheckable.swift; sourceTree = "<group>"; };
+		4949D67A2CF5286A0070E932 /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
+		4949D67C2CF528890070E932 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEdgeInsets.swift; sourceTree = "<group>"; };
+		4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldWithTitle.swift; sourceTree = "<group>"; };
 		495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelProtocol.swift; sourceTree = "<group>"; };
 		495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		49B193352CF4831D0083E576 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -90,6 +98,39 @@
 			path = InternetCheckingService;
 			sourceTree = "<group>";
 		};
+		4949D6782CF528230070E932 /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
+		4949D6792CF528400070E932 /* UserViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4949D67A2CF5286A0070E932 /* UserViewModelProtocol.swift */,
+				4949D67C2CF528890070E932 /* UserViewModel.swift */,
+			);
+			path = UserViewModel;
+			sourceTree = "<group>";
+		};
+		4949D67E2CF5DF240070E932 /* UserScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */,
+			);
+			path = UserScreen;
+			sourceTree = "<group>";
+		};
+		4949D6812CF5E67E0070E932 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		495F5E322CF4789000E6B71A /* UsersListModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +180,7 @@
 		49B1934A2CF493780083E576 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				4949D67E2CF5DF240070E932 /* UserScreen */,
 				49B1937F2CF4CA6B0083E576 /* UsersListScreen */,
 				49B1933F2CF48C6A0083E576 /* ResourcesTypealias.swift */,
 			);
@@ -203,6 +245,7 @@
 				CE9F09292CEF659F00CFA6B5 /* Application */,
 				CE9F09282CEF658B00CFA6B5 /* Resources */,
 				49B193762CF4BC230083E576 /* Extensions */,
+				4949D6812CF5E67E0070E932 /* Common */,
 				49B1934A2CF493780083E576 /* Constants */,
 				49B193442CF490860083E576 /* Services */,
 				49B193412CF48D370083E576 /* Models */,
@@ -238,7 +281,8 @@
 		CE9F092A2CEF65CA00CFA6B5 /* UserModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+				4949D6792CF528400070E932 /* UserViewModel */,
+				4949D6782CF528230070E932 /* UserView */,
 			);
 			path = UserModule;
 			sourceTree = "<group>";
@@ -327,11 +371,15 @@
 				495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */,
 				49B1935F2CF498B10083E576 /* CoreDataService.swift in Sources */,
 				49B1935B2CF497490083E576 /* UserPersistenceModel.xcdatamodeld in Sources */,
+				4949D67B2CF5286A0070E932 /* UserViewModelProtocol.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
+				4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */,
+				4949D67D2CF528890070E932 /* UserViewModel.swift in Sources */,
 				49B193582CF496600083E576 /* CoreDataStack.swift in Sources */,
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
 				49B193832CF4CEDD0083E576 /* String+Extension.swift in Sources */,
 				4949D66F2CF526F60070E932 /* InternetCheckable.swift in Sources */,
+				4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */,
 				49B193782CF4BC370083E576 /* UITableView+Extension.swift in Sources */,
 				49B1937A2CF4BC730083E576 /* UIView+Extension.swift in Sources */,
 				49B193402CF48C6A0083E576 /* ResourcesTypealias.swift in Sources */,

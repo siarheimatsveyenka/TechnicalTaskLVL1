@@ -11,6 +11,12 @@ import Combine
 
 final class UsersListViewController: UIViewController {
     
+    // MARK: - Sizes
+    
+    private enum Sizes {
+        static let cellTextOffset: CGFloat = 10.0
+    }
+    
     // MARK: - Parameters
     
     private var viewModel: UsersListViewModelProtocol
@@ -181,10 +187,10 @@ extension UsersListViewController: UITableViewDataSource {
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let userData = self.viewModel.displayData[indexPath.row]
-        let streetHeaderTextHeight: CGFloat = "Street:".heightForText(isBold: true) + 20
-        let cityNameTextHeight: CGFloat = userData.city.heightForText() + 10
-        let streetNameTextHeight: CGFloat = userData.street.heightForText() + 10
-        let totalHeight = streetHeaderTextHeight + cityNameTextHeight + streetNameTextHeight
+        let addressHeaderTextHeight: CGFloat = UsersListCellStrings.addressLabelTitle.heightForText(isBold: true) + (Sizes.cellTextOffset * 2)
+        let cityNameTextHeight: CGFloat = userData.city.heightForText() + Sizes.cellTextOffset
+        let streetNameTextHeight: CGFloat = userData.street.heightForText() + Sizes.cellTextOffset
+        let totalHeight = addressHeaderTextHeight + cityNameTextHeight + streetNameTextHeight
         return totalHeight
     }
 }

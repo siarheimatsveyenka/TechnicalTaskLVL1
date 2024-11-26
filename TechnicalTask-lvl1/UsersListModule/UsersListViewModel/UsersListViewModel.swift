@@ -15,15 +15,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     private let updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol
     private var cancellables: Set<AnyCancellable> = []
 
-    var displayData = [
-        UsersListDiplayModel(
-            username: "Delphine",
-            email: "Chaim_McDermott@dana.io",
-            city: "Bartholomebury",
-            street: "Dayna Park",
-            isAnimatingNeeded: false
-        )
-    ]
+    var displayData = [UsersListDiplayModel]()
     
     private let loaderIsActivePublisher = PassthroughSubject<Bool, Never>()
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> {
@@ -56,7 +48,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
             .sink { [weak self] data in
                 guard let self else { return }
                 print("!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&")
-                self.displayData = data
+                self.displayData = data.sorted { $0.username < $1.username }
                 self.displayDataUpdatedPublisher.send()
             }
             .store(in: &self.cancellables)

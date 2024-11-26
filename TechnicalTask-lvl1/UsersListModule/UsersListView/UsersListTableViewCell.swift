@@ -17,7 +17,10 @@ final class UsersListTableViewCell: UITableViewCell {
         static let regularFontSize: CGFloat = 15.0
         static let stackViewsOffset: CGFloat = 15.0
         static let stackViewsSpacing: CGFloat = 10.0
+        static let underlyingViewHeightInset: CGFloat = 2
+        static let underlyingViewCornerRadius: CGFloat = 15.0
         static let userEmailWidthCoeff: ConstraintMultiplierTarget = 0.4
+        static let userDetailsWidthCoeff: ConstraintMultiplierTarget = 1.8
     }
     
     // MARK: - GUI
@@ -31,6 +34,7 @@ final class UsersListTableViewCell: UITableViewCell {
     private lazy var userEmailLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: Sizes.regularFontSize)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -80,6 +84,15 @@ final class UsersListTableViewCell: UITableViewCell {
         return stackView
     }()
     
+    private lazy var underlyingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.layer.cornerRadius = Sizes.underlyingViewCornerRadius
+        view.layer.borderWidth = 2
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override func prepareForReuse() {
@@ -103,7 +116,6 @@ final class UsersListTableViewCell: UITableViewCell {
 private extension UsersListTableViewCell {
     func setupLayout() {
         self.backgroundColor = .clear
-        
         self.addSubViews()
         self.setConstraints()
     }
@@ -111,24 +123,19 @@ private extension UsersListTableViewCell {
     // MARK: - Add subviews
 
     func addSubViews() {
-        self.contentView.addSubview(self.userDetailsStackView)
-        self.contentView.addSubview(self.userAddressStackView)
+        self.contentView.addSubview(self.underlyingView)
+        self.underlyingView.addSubview(self.userDetailsStackView)
+        self.underlyingView.addSubview(self.userAddressStackView)
     }
     
     // MARK: - Set constraints
     
     func setConstraints() {
-        self.userEmailLabel.snp.makeConstraints {
-            if let neededWidth = self.userEmailLabel.text?.widthForText() {
-                $0.width.equalTo(neededWidth)
-            } else {
-                $0.width.equalToSuperview().multipliedBy(Sizes.userEmailWidthCoeff)
-            }
-        }
+        self.underlyingView.frame = self.contentView.bounds.insetBy(dx: 0, dy: Sizes.underlyingViewHeightInset)
         
         self.userDetailsStackView.snp.makeConstraints {
             $0.left.top.bottom.height.equalToSuperview().inset(UsersListEdgeInsets.cellStackView)
-            $0.width.equalTo(self.userEmailLabel.snp.width)
+            $0.width.equalToSuperview().dividedBy(Sizes.userDetailsWidthCoeff)
         }
         
         self.userAddressStackView.snp.makeConstraints {

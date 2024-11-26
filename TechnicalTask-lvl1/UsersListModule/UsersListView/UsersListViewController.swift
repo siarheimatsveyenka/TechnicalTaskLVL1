@@ -39,6 +39,7 @@ final class UsersListViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -139,6 +140,7 @@ private extension UsersListViewController {
             .sink { [weak self] in
                 guard let self else { return }
                 self.usersListTableView.reloadData()
+                self.startingLoaderView.stopAnimating()
             }
             .store(in: &self.cancellables)
     }
@@ -203,7 +205,7 @@ extension UsersListViewController: UITableViewDataSource {
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let userData = self.viewModel.displayData[indexPath.row]
-        let addressHeaderTextHeight: CGFloat = UsersListCellStrings.addressLabelTitle.heightForText(isBold: true) + (Sizes.cellTextOffset * 2)
+        let addressHeaderTextHeight: CGFloat = UsersListCellStrings.addressLabelTitle.heightForText(isBold: true) + (Sizes.cellTextOffset * 3)
         let cityNameTextHeight: CGFloat = userData.city.heightForText() + Sizes.cellTextOffset
         let streetNameTextHeight: CGFloat = userData.street.heightForText() + Sizes.cellTextOffset
         let totalHeight = addressHeaderTextHeight + cityNameTextHeight + streetNameTextHeight

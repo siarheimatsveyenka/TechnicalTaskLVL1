@@ -23,14 +23,18 @@ final class InternetCheckingService: InternetCheckable {
     // MARK: - Checker
     
     func startChecking() {
-        self.monitor.start(queue: .global())
+        self.monitor.start(queue: .global(qos: .background))
         
-        self.monitor.pathUpdateHandler = { path in            
-            switch path.status {
-            case .satisfied:
-                self.isInternetActivePublisher.send(true)
-            default:
-                self.isInternetActivePublisher.send(false)
+        self.monitor.pathUpdateHandler = { [weak self] path in
+            guard let self else { return }
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+                switch path.status {
+                case .satisfied:
+                    self.isInternetActivePublisher.send(true)
+                default:
+                    self.isInternetActivePublisher.send(false)
+                }
             }
         }
     }

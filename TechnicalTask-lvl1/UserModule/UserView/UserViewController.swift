@@ -2,6 +2,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class UserViewController: UIViewController {
     
@@ -19,6 +20,11 @@ final class UserViewController: UIViewController {
         static let buttonHeightCoeff: ConstraintMultiplierTarget = 0.08
         static let buttonWidthCoeff: ConstraintMultiplierTarget = 0.5
     }
+    
+    // MARK: - Parameters
+    
+    private var viewModel: UserViewModelProtocol
+    private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - GUI
     
@@ -79,11 +85,24 @@ final class UserViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Initialization
+    
+    init(viewModel: UserViewModelProtocol) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.binding()
         self.setupLayout()
     }
     
@@ -143,6 +162,69 @@ private extension UserViewController {
 
 private extension UserViewController {
     @objc func saveUserInfoButtonTapped() {
-        print("saveUserInfoButtonTapped")
+        self.viewModel.saveUserInfoButtonTapped()
+    }
+    
+    func handleSaveUserInfoButtonTapped() {
+        self.viewModel.submitUserInfo(
+            UsersListDiplayModel(
+                username: self.userNameInputView.textField.text ?? "",
+                email: self.userEmailInputView.textField.text ?? "",
+                city: self.cityNameInputView.textField.text ?? "",
+                street: self.streetNameInputView.textField.text ?? "",
+                isAnimatingNeeded: true
+            )
+        )
+        
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+// MARK: - Binding
+
+private extension UserViewController {
+    func binding() {
+        self.bindInput()
+    }
+    
+    func bindInput() {
+        self.viewModel.anySaveUserInfoButtonTappedPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                self.handleSaveUserInfoButtonTapped()
+            }
+            .store(in: &self.cancellables)
+
+        self.userNameInputView.textField.publisher()
+            .merge(
+                with: self.userEmailInputView.textField.publisher(),
+                self.cityNameInputView.textField.publisher(),
+                self.streetNameInputView.textField.publisher()
+            )
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] textField in
+            guard let self, let text = textField.text else { return }
+            
+            switch textField {
+            case self.userNameInputView.textField:
+                self.viewModel.userNameUpdated(text)
+            case self.userEmailInputView.textField:
+                self.viewModel.userEmailUpdated(text)
+            case self.cityNameInputView.textField:
+                self.viewModel.cityNameUpdated(text)
+            case self.streetNameInputView.textField:
+                self.viewModel.streetNameUpdated(text)
+            default: break
+            }
+        }
+        .store(in: &self.cancellables)
+    }
+    
+    func textFieldPublisher(for textField: UITextField) -> AnyPublisher<String, Never> {
+        NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: textField)
+            .compactMap { ($0.object as? UITextField)?.text ?? String() }
+            .eraseToAnyPublisher()
     }
 }

@@ -144,7 +144,15 @@ private extension UsersListViewController {
     }
     
     func handleAddButtonTapped() {
-        self.navigationController?.pushViewController(UserViewController(), animated: true)
+        let userViewModel = UserViewModel()
+        let userViewController = UserViewController(viewModel: userViewModel)
+        
+        userViewModel.userInfoClosure = { [weak self] userInfo in
+            guard let self else { return }
+            self.viewModel.handleAddedManuallyUserInfo(userInfo)
+        }
+        
+        self.navigationController?.pushViewController(userViewController, animated: true)
     }
     
     func handleLoaderAnimating(for isOn: Bool) {
@@ -152,6 +160,8 @@ private extension UsersListViewController {
         ? self.startingLoaderView.startAnimating()
         : self.startingLoaderView.stopAnimating()
     }
+    
+    
 }
 
 // MARK: - UITableViewDataSource

@@ -13,6 +13,8 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     // MARK: - Parameters
     
     private let updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol
+    private var cancellables: Set<AnyCancellable> = []
+
     var displayData = [
         UsersListDiplayModel(
             username: "Delphine",
@@ -48,6 +50,18 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     func readyToDisplay() {
         self.startLoaderAnimating()
+        
+        
+        self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisherPublisher
+            .sink { [weak self] data in
+                guard let self else { return }
+                print("!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&")
+                self.displayData = data
+                self.displayDataUpdatedPublisher.send()
+            }
+            .store(in: &self.cancellables)
+        
+        self.updatingUsersDataFacade.fetchUsersData()
     }
     
     func addButtonTapped() {
@@ -58,6 +72,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         guard !self.displayData.contains(where: { $0.email == userInfo.email } ) else { return }
         self.displayData.append(userInfo)
         self.displayDataUpdatedPublisher.send()
+        self.updatingUsersDataFacade.saveUsersData(userInfo)
     }
 }
 

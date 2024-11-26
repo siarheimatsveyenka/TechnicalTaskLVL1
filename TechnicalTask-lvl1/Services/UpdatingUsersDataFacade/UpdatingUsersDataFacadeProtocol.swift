@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol UpdatingUsersDataFacadeProtocol {
-    
+    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<[UsersListDiplayModel], Never> { get }
+
+    func fetchUsersData()
+    func saveUsersData(_ userInfo: UsersListDiplayModel)
 }

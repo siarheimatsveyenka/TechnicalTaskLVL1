@@ -43,7 +43,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     }
     
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
-        
+        dump(userInfo)
     }
 }
 

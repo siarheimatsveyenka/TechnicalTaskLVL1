@@ -8,9 +8,9 @@
 import Foundation
 
 struct UsersListDiplayModel {
-    let username: String
-    let email: String
-    let city: String
-    let street: String
+    var username: String
+    var email: String
+    var city: String
+    var street: String
     var isAnimatingNeeded: Bool
 }

@@ -42,6 +42,7 @@ final class UserViewController: UIViewController {
     
     private lazy var userEmailInputView: CustomTextFieldWithTitle = {
         let customView = CustomTextFieldWithTitle(title: UserScreenStrings.userEmailInputViewTitle)
+        customView.textField.textColor = .red
         return customView
     }()
     
@@ -166,16 +167,6 @@ private extension UserViewController {
     }
     
     func handleSaveUserInfoButtonTapped() {
-        self.viewModel.submitUserInfo(
-            UsersListDiplayModel(
-                username: self.userNameInputView.textField.text ?? "",
-                email: self.userEmailInputView.textField.text ?? "",
-                city: self.cityNameInputView.textField.text ?? "",
-                street: self.streetNameInputView.textField.text ?? "",
-                isAnimatingNeeded: true
-            )
-        )
-        
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -185,6 +176,7 @@ private extension UserViewController {
 private extension UserViewController {
     func binding() {
         self.bindInput()
+        self.bindOutput()
     }
     
     func bindInput() {
@@ -221,10 +213,13 @@ private extension UserViewController {
         .store(in: &self.cancellables)
     }
     
-    func textFieldPublisher(for textField: UITextField) -> AnyPublisher<String, Never> {
-        NotificationCenter.default
-            .publisher(for: UITextField.textDidChangeNotification, object: textField)
-            .compactMap { ($0.object as? UITextField)?.text ?? String() }
-            .eraseToAnyPublisher()
+    func bindOutput() {
+        self.viewModel.anyEmailTextFieldColorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] textColor in
+                guard let self else { return }
+                self.userEmailInputView.textField.textColor = textColor
+            }
+            .store(in: &self.cancellables)
     }
 }

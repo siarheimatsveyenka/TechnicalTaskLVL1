@@ -13,3 +13,5 @@ typealias Colors = Asset.Colors
 typealias ApiUrls = L10n.Urls
 typealias CoreDataStrings = L10n.CoreData
 typealias UsersListStrings = L10n.UsersListScreen
+typealias UsersListCellStrings = L10n.UsersListCell
+typealias UserScreenStrings = L10n.UserScreen

@@ -15,3 +15,12 @@
 "coreData.attributeStreet" = "street";
 "usersListScreen.navTitle" = "Users list";
 "usersListScreen.tableViewTitle" = "Users details";
+"userScreen.navTitle" = "Add new user";
+"userScreen.saveButtonTitle" = "Save";
+"userScreen.infoLabelTitle" = "Provide all info to save user:";
+"userScreen.userNameInputViewTitle" = "User name:";
+"userScreen.userEmailInputViewTitle" = "User email:";
+"userScreen.cityNameInputViewTitle" = "City name:";
+"userScreen.streetNameInputViewTitle" = "Street name:";
+"userScreen.streetNameInputViewTitle" = "Street name:";
+"usersListCell.addressLabelTitle" = "Address:";

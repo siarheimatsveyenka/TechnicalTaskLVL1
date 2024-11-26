@@ -144,7 +144,7 @@ private extension UsersListViewController {
     }
     
     func handleAddButtonTapped() {
-        let userViewModel = UserViewModel()
+        let userViewModel = UserViewModel(inputedDataCheker: ManuallyInputedDataCheker())
         let userViewController = UserViewController(viewModel: userViewModel)
         
         userViewModel.userInfoClosure = { [weak self] userInfo in
@@ -160,8 +160,6 @@ private extension UsersListViewController {
         ? self.startingLoaderView.startAnimating()
         : self.startingLoaderView.stopAnimating()
     }
-    
-    
 }
 
 // MARK: - UITableViewDataSource

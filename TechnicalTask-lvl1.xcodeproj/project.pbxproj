@@ -13,6 +13,7 @@
 		4949D67D2CF528890070E932 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67C2CF528890070E932 /* UserViewModel.swift */; };
 		4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */; };
 		4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */; };
+		4949D6912CF622980070E932 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6902CF622980070E932 /* UITextField+Extension.swift */; };
 		495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */; };
 		495F5E3F2CF4798F00E6B71A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */; };
 		49B193362CF4831D0083E576 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B193342CF4831D0083E576 /* Localizable.strings */; };
@@ -46,6 +47,7 @@
 		4949D67C2CF528890070E932 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEdgeInsets.swift; sourceTree = "<group>"; };
 		4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldWithTitle.swift; sourceTree = "<group>"; };
+		4949D6902CF622980070E932 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelProtocol.swift; sourceTree = "<group>"; };
 		495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		49B193352CF4831D0083E576 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				49B193772CF4BC370083E576 /* UITableView+Extension.swift */,
 				49B193792CF4BC730083E576 /* UIView+Extension.swift */,
 				49B193822CF4CEDD0083E576 /* String+Extension.swift */,
+				4949D6902CF622980070E932 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 				4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */,
 				4949D67D2CF528890070E932 /* UserViewModel.swift in Sources */,
+				4949D6912CF622980070E932 /* UITextField+Extension.swift in Sources */,
 				49B193582CF496600083E576 /* CoreDataStack.swift in Sources */,
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
 				49B193832CF4CEDD0083E576 /* String+Extension.swift in Sources */,

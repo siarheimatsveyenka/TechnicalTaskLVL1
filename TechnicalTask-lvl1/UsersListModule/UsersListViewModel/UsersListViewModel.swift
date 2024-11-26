@@ -41,6 +41,10 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     func addButtonTapped() {
         self.addButtonTappedPublisher.send()
     }
+    
+    func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
+        
+    }
 }
 
 // MARK: - Actions and handlers

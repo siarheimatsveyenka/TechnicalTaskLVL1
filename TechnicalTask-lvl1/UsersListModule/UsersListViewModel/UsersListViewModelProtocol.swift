@@ -15,4 +15,5 @@ protocol UsersListViewModelProtocol {
     
     func readyToDisplay()
     func addButtonTapped()
+    func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel)
 }

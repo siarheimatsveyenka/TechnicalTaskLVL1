@@ -16,6 +16,8 @@
 		4949D6912CF622980070E932 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6902CF622980070E932 /* UITextField+Extension.swift */; };
 		4949D69D2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D69C2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift */; };
 		4949D69F2CF631AE0070E932 /* ManuallyInputedDataCheker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D69E2CF631AE0070E932 /* ManuallyInputedDataCheker.swift */; };
+		4949D6AA2CF637C10070E932 /* UpdatingUsersDataFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6A92CF637C10070E932 /* UpdatingUsersDataFacade.swift */; };
+		4949D6AC2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6AB2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift */; };
 		495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */; };
 		495F5E3F2CF4798F00E6B71A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */; };
 		49B193362CF4831D0083E576 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B193342CF4831D0083E576 /* Localizable.strings */; };
@@ -52,6 +54,8 @@
 		4949D6902CF622980070E932 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		4949D69C2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyInputedDataChekerProtocol.swift; sourceTree = "<group>"; };
 		4949D69E2CF631AE0070E932 /* ManuallyInputedDataCheker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyInputedDataCheker.swift; sourceTree = "<group>"; };
+		4949D6A92CF637C10070E932 /* UpdatingUsersDataFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingUsersDataFacade.swift; sourceTree = "<group>"; };
+		4949D6AB2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingUsersDataFacadeProtocol.swift; sourceTree = "<group>"; };
 		495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelProtocol.swift; sourceTree = "<group>"; };
 		495F5E3E2CF4798F00E6B71A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		49B193352CF4831D0083E576 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -154,6 +158,15 @@
 			path = ManuallyInputedDataChecker;
 			sourceTree = "<group>";
 		};
+		4949D6A82CF637640070E932 /* UpdatingUsersDataFacade */ = {
+			isa = PBXGroup;
+			children = (
+				4949D6A92CF637C10070E932 /* UpdatingUsersDataFacade.swift */,
+				4949D6AB2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift */,
+			);
+			path = UpdatingUsersDataFacade;
+			sourceTree = "<group>";
+		};
 		495F5E322CF4789000E6B71A /* UsersListModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,7 @@
 		49B193442CF490860083E576 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4949D6A82CF637640070E932 /* UpdatingUsersDataFacade */,
 				4949D66B2CF522C50070E932 /* InternetCheckingService */,
 				49B193562CF4964D0083E576 /* PersistenceService */,
 				49B193452CF490A60083E576 /* NetworkService */,
@@ -407,6 +421,7 @@
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
 				49B193832CF4CEDD0083E576 /* String+Extension.swift in Sources */,
 				4949D66F2CF526F60070E932 /* InternetCheckable.swift in Sources */,
+				4949D6AA2CF637C10070E932 /* UpdatingUsersDataFacade.swift in Sources */,
 				4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */,
 				49B193782CF4BC370083E576 /* UITableView+Extension.swift in Sources */,
 				49B1937A2CF4BC730083E576 /* UIView+Extension.swift in Sources */,
@@ -416,6 +431,7 @@
 				4949D66D2CF522F00070E932 /* InternetConnectionService.swift in Sources */,
 				49B193432CF48D650083E576 /* UserModel.swift in Sources */,
 				49B193472CF490B50083E576 /* NetworkServiceProtocol.swift in Sources */,
+				4949D6AC2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift in Sources */,
 				49B193492CF490BB0083E576 /* NetworkService.swift in Sources */,
 				49B1933A2CF486620083E576 /* XCAssets+Generated.swift in Sources */,
 			);

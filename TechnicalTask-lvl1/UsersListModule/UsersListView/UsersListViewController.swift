@@ -40,6 +40,7 @@ final class UsersListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -154,7 +155,10 @@ private extension UsersListViewController {
     }
     
     func handleAddButtonTapped() {
-        let userViewModel = UserViewModel(inputedDataCheker: ManuallyInputedDataCheker())
+        let userViewModel = UserViewModel(
+            inputedDataCheker: ManuallyInputedDataCheker(),
+            currentEmailsArray: self.viewModel.prepareEmailsForChecking()
+        )
         let userViewController = UserViewController(viewModel: userViewModel)
                 
         userViewModel.userInfoClosure = { [weak self] userInfo in
@@ -187,6 +191,7 @@ extension UsersListViewController: UITableViewDataSource {
         guard let cell: UsersListTableViewCell = tableView.dequeueReusableCell(for: indexPath) else { return UITableViewCell() }
         let user = self.viewModel.displayData[indexPath.row]
         cell.setCellDisplayData(user)
+        self.viewModel.displayData[indexPath.row].isAnimatingNeeded = false
         return cell
     }
     

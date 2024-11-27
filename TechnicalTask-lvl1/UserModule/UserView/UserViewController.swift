@@ -211,6 +211,14 @@ private extension UserViewController {
             }
         }
         .store(in: &self.cancellables)
+        
+        self.viewModel.anyUserExistPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                print("user exist")
+            }
+            .store(in: &self.cancellables)
     }
     
     func bindOutput() {

@@ -13,6 +13,7 @@ final class UserViewModel: UserViewModelProtocol {
     // MARK: - Parameters
     
     private let inputedDataCheker: ManuallyInputedDataChekerProtocol
+    private let currentEmailsArray: [String]
     private var userInfo = UsersListDiplayModel(
         username: String(),
         email: String(),
@@ -25,8 +26,9 @@ final class UserViewModel: UserViewModelProtocol {
     
     // MARK: - Initialization
     
-    init(inputedDataCheker: ManuallyInputedDataChekerProtocol) {
+    init(inputedDataCheker: ManuallyInputedDataChekerProtocol, currentEmailsArray: [String]) {
         self.inputedDataCheker = inputedDataCheker
+        self.currentEmailsArray = currentEmailsArray
     }
     
     // MARK: - Parameters
@@ -41,10 +43,20 @@ final class UserViewModel: UserViewModelProtocol {
         self.emailTextFieldColorPublisher.eraseToAnyPublisher()
     }
     
+    private let userExistPublisher = PassthroughSubject<Void, Never>()
+    var anyUserExistPublisher: AnyPublisher<Void, Never> {
+        self.userExistPublisher.eraseToAnyPublisher()
+    }
+    
     // MARK: - Events
     
     func saveUserInfoButtonTapped() {
         guard self.inputedDataCheker.isInputedDataValid(self.userInfo) else { return }
+        guard !self.currentEmailsArray.contains(self.userInfo.email) else {
+            self.userExistPublisher.send()
+            return
+        }
+        
         self.userInfoClosure?(self.userInfo)
         self.saveUserInfoButtonTappedPublisher.send()
     }

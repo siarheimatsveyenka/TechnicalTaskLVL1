@@ -47,7 +47,6 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisherPublisher
             .sink { [weak self] data in
                 guard let self else { return }
-                print("!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&!!!!!!!!!!!!!!&*&*&*&*&*&*&*&")
                 self.displayData = data.sorted { $0.username < $1.username }
                 self.displayDataUpdatedPublisher.send()
             }
@@ -63,8 +62,13 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
         guard !self.displayData.contains(where: { $0.email == userInfo.email } ) else { return }
         self.displayData.append(userInfo)
+        self.displayData.sort { $0.username < $1.username }
         self.displayDataUpdatedPublisher.send()
         self.updatingUsersDataFacade.saveUsersData(userInfo)
+    }
+    
+    func prepareEmailsForChecking() -> [String] {
+        self.displayData.map { $0.email }
     }
 }
 

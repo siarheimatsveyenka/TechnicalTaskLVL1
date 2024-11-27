@@ -11,6 +11,7 @@ import Combine
 protocol UserViewModelProtocol {
     var anySaveUserInfoButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     var anyEmailTextFieldColorPublisher: AnyPublisher<UIColor, Never> { get }
+    var anyUserExistPublisher: AnyPublisher<Void, Never> { get }
     var userInfoClosure: ((UsersListDiplayModel) -> ())? { get }
     
     func saveUserInfoButtonTapped()

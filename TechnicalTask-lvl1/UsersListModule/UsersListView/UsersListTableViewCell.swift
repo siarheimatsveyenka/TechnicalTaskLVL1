@@ -106,7 +106,7 @@ final class UsersListTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         self.setupLayout()
     }
 }
@@ -153,5 +153,17 @@ extension UsersListTableViewCell {
         self.userEmailLabel.text = user.email
         self.cityNameLabel.text = user.city
         self.streetNameLabel.text = user.street
+        
+        self.contentView.alpha = 0
+        
+        if user.isAnimatingNeeded {
+            print("111")
+
+            UIView.animate(withDuration: 1) {
+                self.contentView.alpha = 1
+            }
+        } else {
+            self.contentView.alpha = 1
+        }
     }
 }

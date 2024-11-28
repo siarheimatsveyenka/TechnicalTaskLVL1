@@ -210,6 +210,7 @@ extension UsersListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.usersListTableView.beginUpdates()
+            self.viewModel.userDeletingActivatedWithIndex(indexPath.row)
             self.viewModel.displayData.remove(at: indexPath.row)
             self.usersListTableView.deleteRows(at: [indexPath], with: .fade)
             self.usersListTableView.endUpdates()

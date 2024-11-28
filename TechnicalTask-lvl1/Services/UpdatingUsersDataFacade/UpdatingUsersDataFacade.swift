@@ -143,4 +143,12 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
             }
         }
     }
+    
+    func deleteUser(_ user: UsersListDiplayModel) {
+        Task {
+            do {
+                try? self.coreDataService.deleteUser(user)
+            }
+        }
+    }
 }

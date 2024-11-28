@@ -12,9 +12,14 @@ final class CoreDataService: CoreDataServiceProtocol {
     
     // MARK: - Parameters
     
-    private lazy var coreDataStack: CoreDataStack = {
+    private var coreDataStack: CoreDataStack = {
         CoreDataStack(modelName: CoreDataStrings.modelName)
     }()
+    
+    private var managedContext: NSManagedObjectContext {
+        self.coreDataStack.managedContext
+    }
+    
     
     // MARK: - Persistence methods
     
@@ -35,9 +40,8 @@ final class CoreDataService: CoreDataServiceProtocol {
     }
     
     func saveUser(_ user: UserModel) async throws {
-        let managedContext = self.coreDataStack.managedContext
-        guard let entity = NSEntityDescription.entity(forEntityName: CoreDataStrings.entityName, in: managedContext) else { return }
-        let newUser = NSManagedObject(entity: entity, insertInto: managedContext)
+        guard let entity = NSEntityDescription.entity(forEntityName: CoreDataStrings.entityName, in: self.managedContext) else { return }
+        let newUser = NSManagedObject(entity: entity, insertInto: self.managedContext)
         newUser.setValue(user.username, forKey: CoreDataStrings.attributeUserName)
         newUser.setValue(user.email, forKey: CoreDataStrings.attributeEmail)
         newUser.setValue(user.address.city, forKey: CoreDataStrings.attributeCity)
@@ -48,6 +52,29 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
         
         catch let error as NSError {
+            throw error
+        }
+    }
+    
+    func deleteUser(_ user: UsersListDiplayModel) throws {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoreDataStrings.entityName)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "\(CoreDataStrings.attributeUserName) == %@", user.username),
+            NSPredicate(format: "\(CoreDataStrings.attributeEmail) == %@", user.email),
+            NSPredicate(format: "\(CoreDataStrings.attributeCity) == %@", user.city),
+            NSPredicate(format: "\(CoreDataStrings.attributeStreet) == %@", user.street)
+        ])
+        
+        do {
+            let results = try self.managedContext.fetch(fetchRequest)
+            
+            guard let object = results.first else { return }
+            self.managedContext.delete(object)
+            try self.managedContext.save()
+        }
+        
+        catch let error as NSError {
+            print(error.localizedDescription)
             throw error
         }
     }

@@ -18,4 +18,5 @@ protocol UsersListViewModelProtocol {
     func addButtonTapped()
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel)
     func prepareEmailsForChecking() -> [String]
+    func pullToRefresh()
 }

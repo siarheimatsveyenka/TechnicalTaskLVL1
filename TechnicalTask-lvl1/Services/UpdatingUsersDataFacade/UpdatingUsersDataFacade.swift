@@ -64,32 +64,39 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
             .store(in: &self.cancellables)
         
         self.internetChecker.startChecking()
-        
-        
     }
     
     func getUsersDataAccordingConnection(_ isConnected: Bool) {
-        var uploadedData = [UsersListDiplayModel]()
-        
-        if isConnected {
-            Task {
-                do {
-                    let responseData: [UserModel] = try await self.networkService.requestData(toEndPoint: ApiUrls.users, httpMethod: .get)
-                    let usersData = try await self.coreDataService.fetchUsers()
-                    uploadedData.append(contentsOf: self.prepareUserDisplayData(from: usersData))
-                    uploadedData.append(contentsOf: self.updateResponseData(responseData))
-                    
-                    self.displayDataUpdatedPublisher.send(uploadedData)
-                }
+        Task {
+            do {
+                let usersData = try await self.coreDataService.fetchUsers()
+                var persistentData = self.prepareUserDisplayData(from: usersData)
                 
-                catch let error {
-                    print(error.localizedDescription)
+                if isConnected {
+                    let responseData: [UserModel] = try await self.networkService.requestData(toEndPoint: ApiUrls.users, httpMethod: .get)
+                    let updatedResponseData = self.updateResponseData(responseData)
+                    
+                    updatedResponseData.forEach { uploadedData in
+                        if !persistentData.contains(where: { savedData in
+                            uploadedData.email == savedData.email
+                        }) {
+                            persistentData.append(uploadedData)
+                            self.saveNewData(uploadedData)
+                        }
+                    }
+                    self.displayDataUpdatedPublisher.send(persistentData)
+                } else {
+                    self.displayDataUpdatedPublisher.send(persistentData)
                 }
+            }
+            
+            catch let error {
+                print(error.localizedDescription)
             }
         }
     }
     
-    func prepareUserDisplayData(from coreDataData: [NSManagedObject]) -> [UsersListDiplayModel] {
+    private func prepareUserDisplayData(from coreDataData: [NSManagedObject]) -> [UsersListDiplayModel] {
         var result = [UsersListDiplayModel]()
         
         coreDataData.forEach { managedObject in
@@ -106,8 +113,8 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         
         return result
     }
-    
-    func updateResponseData(_ responseData: [UserModel]) -> [UsersListDiplayModel] {
+        
+    private func updateResponseData(_ responseData: [UserModel]) -> [UsersListDiplayModel] {
         var result = [UsersListDiplayModel]()
         
         responseData.forEach {
@@ -123,5 +130,17 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         }
         
         return result
+    }
+    
+    private func saveNewData(_ data: UsersListDiplayModel) {
+        Task {
+            do {
+                try await self.coreDataService.saveUser(UserModel(username: data.username, email: data.email, address: Address(city: data.city, street: data.street)))
+            }
+            
+            catch let error {
+                print(error.localizedDescription)
+            }
+        }
     }
 }

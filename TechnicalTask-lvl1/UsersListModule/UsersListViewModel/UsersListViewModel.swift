@@ -59,6 +59,18 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.addButtonTappedPublisher.send()
     }
     
+    func pullToRefresh() {
+        self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisherPublisher
+            .sink { [weak self] data in
+                guard let self else { return }
+                self.displayData = data.sorted { $0.username < $1.username }
+                self.displayDataUpdatedPublisher.send()
+            }
+            .store(in: &self.cancellables)
+        
+        self.updatingUsersDataFacade.fetchUsersData()
+    }
+    
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
         guard !self.displayData.contains(where: { $0.email == userInfo.email } ) else { return }
         self.displayData.append(userInfo)

@@ -24,3 +24,4 @@
 "userScreen.streetNameInputViewTitle" = "Street name:";
 "userScreen.streetNameInputViewTitle" = "Street name:";
 "usersListCell.addressLabelTitle" = "Address:";
+"userScreen.userErrorTitle" = "Such user alredy exist";

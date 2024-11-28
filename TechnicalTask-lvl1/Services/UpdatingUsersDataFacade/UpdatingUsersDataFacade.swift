@@ -23,6 +23,11 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         self.displayDataUpdatedPublisher.eraseToAnyPublisher()
     }
     
+    private let connectionErrorPublisher = PassthroughSubject<Bool, Never>()
+    var anyConnectionErrorPublisher: AnyPublisher<Bool, Never> {
+        self.connectionErrorPublisher.eraseToAnyPublisher()
+    }
+    
     // MARK: - Initialization
 
     init(coreDataService: CoreDataServiceProtocol, networkService: NetworkServiceProtocol, internetChecker: InternetCheckable) {
@@ -85,8 +90,10 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
                         }
                     }
                     self.displayDataUpdatedPublisher.send(persistentData)
+                    self.connectionErrorPublisher.send(false)
                 } else {
                     self.displayDataUpdatedPublisher.send(persistentData)
+                    self.connectionErrorPublisher.send(true)
                 }
             }
             

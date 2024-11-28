@@ -33,6 +33,11 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.displayDataUpdatedPublisher.eraseToAnyPublisher()
     }
     
+    private let isShowingInternetErrorPublisher = PassthroughSubject<Bool, Never>()
+    var anyIsShowingInternetErrorPublisher: AnyPublisher<Bool, Never> {
+        self.isShowingInternetErrorPublisher.eraseToAnyPublisher()
+    }
+    
     // MARK: - Initialization
     
     init(updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol, coreDataService: CoreDataServiceProtocol) {
@@ -51,6 +56,13 @@ final class UsersListViewModel: UsersListViewModelProtocol {
                 guard let self else { return }
                 self.displayData = data.sorted { $0.username < $1.username }
                 self.displayDataUpdatedPublisher.send()
+            }
+            .store(in: &self.cancellables)
+        
+        self.updatingUsersDataFacade.anyConnectionErrorPublisher
+            .sink { [weak self] isError in
+                guard let self else { return }
+                self.isShowingInternetErrorPublisher.send(isError)
             }
             .store(in: &self.cancellables)
         

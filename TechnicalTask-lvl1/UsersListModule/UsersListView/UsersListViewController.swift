@@ -32,6 +32,22 @@ final class UsersListViewController: UIViewController {
         return spinnerView
     }()
     
+    private lazy var connectionAlert: UIAlertController = {
+        let alert = UIAlertController(
+            title: "Warning",
+            message: "NO CONNECTION",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(
+                title: "Ok",
+                style: .cancel,
+                handler: nil
+            )
+        )
+        return alert
+    }()
+    
     private lazy var usersListTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -150,6 +166,24 @@ private extension UsersListViewController {
                 self.usersListTableView.reloadData()
                 self.startingLoaderView.stopAnimating()
                 self.refreshControll.endRefreshing()
+            }
+            .store(in: &self.cancellables)
+        
+        self.viewModel.anyIsShowingInternetErrorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isShow in
+                guard let self else { return }
+                if isShow {
+                    DispatchQueue.main.async {
+                        self.present(
+                            self.connectionAlert,
+                            animated: true,
+                            completion: nil
+                        )
+                    }
+                } else {
+                    self.connectionAlert.removeFromParent()
+                }
             }
             .store(in: &self.cancellables)
     }

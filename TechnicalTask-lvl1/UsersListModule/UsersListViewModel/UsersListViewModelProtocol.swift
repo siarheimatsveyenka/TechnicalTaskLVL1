@@ -13,6 +13,7 @@ protocol UsersListViewModelProtocol {
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> { get }
     var anyAddButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<Void, Never> { get }
+    var anyIsShowingInternetErrorPublisher: AnyPublisher<Bool, Never> { get }
     
     func readyToDisplay()
     func addButtonTapped()

@@ -216,7 +216,7 @@ private extension UserViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 guard let self else { return }
-                print("user exist")
+                self.showError(message: UserScreenStrings.userErrorTitle)
             }
             .store(in: &self.cancellables)
     }

@@ -52,13 +52,12 @@ final class UserViewModel: UserViewModelProtocol {
     
     func saveUserInfoButtonTapped() {
         guard self.inputedDataCheker.isInputedDataValid(self.userInfo) else { return }
-        guard !self.currentEmailsArray.contains(self.userInfo.email) else {
+        if self.currentEmailsArray.contains(self.userInfo.email) {
             self.userExistPublisher.send()
-            return
+        } else {
+            self.userInfoClosure?(self.userInfo)
+            self.saveUserInfoButtonTappedPublisher.send()
         }
-        
-        self.userInfoClosure?(self.userInfo)
-        self.saveUserInfoButtonTappedPublisher.send()
     }
     
     func userNameUpdated(_ userName: String) {

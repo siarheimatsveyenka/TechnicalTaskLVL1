@@ -13,6 +13,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     // MARK: - Parameters
     
     private let updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol
+    private let coreDataService: CoreDataServiceProtocol
     private var cancellables: Set<AnyCancellable> = []
 
     var displayData = [UsersListDiplayModel]()
@@ -34,8 +35,9 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     // MARK: - Initialization
     
-    init(updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol) {
+    init(updatingUsersDataFacade: UpdatingUsersDataFacadeProtocol, coreDataService: CoreDataServiceProtocol) {
         self.updatingUsersDataFacade = updatingUsersDataFacade
+        self.coreDataService = coreDataService
     }
     
     // MARK: - Events
@@ -81,6 +83,10 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     func prepareEmailsForChecking() -> [String] {
         self.displayData.map { $0.email }
+    }
+    
+    func userDeletingActivatedWithIndex(_ index: Int) {
+        self.updatingUsersDataFacade.deleteUser(self.displayData[index])
     }
 }
 

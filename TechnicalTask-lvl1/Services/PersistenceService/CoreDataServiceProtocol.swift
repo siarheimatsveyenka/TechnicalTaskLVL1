@@ -11,4 +11,5 @@ import CoreData
 protocol CoreDataServiceProtocol {
     func fetchUsers() async throws -> [NSManagedObject]
     func saveUser(_ user: UserModel) async throws
+    func deleteUser(_ user: UsersListDiplayModel) throws
 }

@@ -11,7 +11,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     coreDataService: CoreDataService(),
                     networkService: NetworkService(),
                     internetChecker: InternetCheckingService()
-                )
+                ),
+                coreDataService: CoreDataService()
             )
         )
         

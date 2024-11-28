@@ -13,4 +13,5 @@ protocol UpdatingUsersDataFacadeProtocol {
 
     func fetchUsersData()
     func saveUsersData(_ userInfo: UsersListDiplayModel)
+    func deleteUser(_ user: UsersListDiplayModel)
 }

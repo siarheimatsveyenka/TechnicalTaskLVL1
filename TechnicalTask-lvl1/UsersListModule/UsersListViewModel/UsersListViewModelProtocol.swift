@@ -19,4 +19,5 @@ protocol UsersListViewModelProtocol {
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel)
     func prepareEmailsForChecking() -> [String]
     func pullToRefresh()
+    func userDeletingActivatedWithIndex(_ index: Int)
 }

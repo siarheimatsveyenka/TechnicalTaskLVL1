@@ -20,22 +20,30 @@ final class InternetCheckingService: InternetCheckable {
         self.isInternetActivePublisher.eraseToAnyPublisher()
     }
     
+    private var perviousConnectionIsActive: Bool = false
+    
     // MARK: - Checker
     
     func startChecking() {
         self.monitor.start(queue: .global(qos: .background))
         
-        self.monitor.pathUpdateHandler = { [weak self] path in
-            guard let self else { return }
-            
-            DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
-                switch path.status {
-                case .satisfied:
-                    self.isInternetActivePublisher.send(true)
-                default:
-                    self.isInternetActivePublisher.send(false)
+        if !perviousConnectionIsActive {
+            self.monitor.pathUpdateHandler = { [weak self] path in
+                guard let self else { return }
+                
+                DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+                    switch path.status {
+                    case .satisfied:
+                        self.isInternetActivePublisher.send(true)
+                        self.perviousConnectionIsActive = true
+                    default:
+                        self.isInternetActivePublisher.send(false)
+                        self.perviousConnectionIsActive = false
+                    }
                 }
             }
+        } else {
+            self.isInternetActivePublisher.send(true)
         }
     }
 }

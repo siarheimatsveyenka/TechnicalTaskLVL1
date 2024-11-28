@@ -41,7 +41,14 @@ final class UsersListViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.refreshControl = self.refreshControll
         return tableView
+    }()
+    
+    private lazy var refreshControll: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: .valueChanged)
+        return refreshControl
     }()
     
     // MARK: - Initialization
@@ -142,6 +149,7 @@ private extension UsersListViewController {
                 guard let self else { return }
                 self.usersListTableView.reloadData()
                 self.startingLoaderView.stopAnimating()
+                self.refreshControll.endRefreshing()
             }
             .store(in: &self.cancellables)
     }
@@ -173,6 +181,10 @@ private extension UsersListViewController {
         isOn
         ? self.startingLoaderView.startAnimating()
         : self.startingLoaderView.stopAnimating()
+    }
+    
+    @objc func pullToRefresh() {
+        self.viewModel.pullToRefresh()
     }
 }
 

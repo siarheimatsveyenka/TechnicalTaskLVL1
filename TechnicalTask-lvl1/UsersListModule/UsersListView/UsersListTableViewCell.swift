@@ -157,8 +157,6 @@ extension UsersListTableViewCell {
         self.contentView.alpha = 0
         
         if user.isAnimatingNeeded {
-            print("111")
-
             UIView.animate(withDuration: 1) {
                 self.contentView.alpha = 1
             }

@@ -17,6 +17,12 @@ final class UsersListViewController: UIViewController {
         static let cellTextOffset: CGFloat = 10.0
     }
     
+    // MARK: - Edges
+    
+    private enum UsersListEdgeInsets {
+        static let usersList = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+    
     // MARK: - Parameters
     
     private var viewModel: UsersListViewModelProtocol
@@ -248,7 +254,6 @@ extension UsersListViewController: UITableViewDataSource {
         if editingStyle == .delete {
             self.usersListTableView.beginUpdates()
             self.viewModel.userDeletingActivatedWithIndex(indexPath.row)
-            self.viewModel.displayData.remove(at: indexPath.row)
             self.usersListTableView.deleteRows(at: [indexPath], with: .fade)
             self.usersListTableView.endUpdates()
         }

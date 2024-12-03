@@ -16,7 +16,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     private let coreDataService: CoreDataServiceProtocol
     private var cancellables: Set<AnyCancellable> = []
 
-    var displayData = [UsersListDiplayModel]()
+    var displayData = [UsersListDisplayModel]()
     
     private let loaderIsActivePublisher = PassthroughSubject<Bool, Never>()
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> {
@@ -60,7 +60,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
         self.loadData()
     }
     
-    func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
+    func handleAddedManuallyUserInfo(_ userInfo: UsersListDisplayModel) {
         guard !self.displayData.contains(where: { $0.email == userInfo.email } ) else { return }
         self.displayData.append(userInfo)
         self.displayData.sort { $0.username < $1.username }
@@ -74,6 +74,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     func userDeletingActivatedWithIndex(_ index: Int) {
         self.updatingUsersDataFacade.deleteUser(self.displayData[index])
+        self.displayData.remove(at: index)
     }
 }
 

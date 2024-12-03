@@ -55,13 +55,10 @@ final class CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    func deleteUser(_ user: UsersListDiplayModel) throws {
+    func deleteUser(_ user: UsersListDisplayModel) throws {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoreDataStrings.entityName)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-//            NSPredicate(format: "\(CoreDataStrings.attributeUserName) == %@", user.username),
             NSPredicate(format: "\(CoreDataStrings.attributeEmail) == %@", user.email)
-//            NSPredicate(format: "\(CoreDataStrings.attributeCity) == %@", user.city),
-//            NSPredicate(format: "\(CoreDataStrings.attributeStreet) == %@", user.street)
         ])
         
         do {

@@ -11,6 +11,12 @@ import CoreData
 
 final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
     
+    // MARK: - Api URLs
+    
+    private enum ApiUrls: String {
+        case users = "https://jsonplaceholder.typicode.com/users"
+    }
+    
     // MARK: - Services
     
     private let coreDataService: CoreDataServiceProtocol
@@ -18,8 +24,8 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
     private let internetChecker: InternetCheckable
     private var cancellables: Set<AnyCancellable> = []
     
-    private let displayDataUpdatedPublisher = PassthroughSubject<[UsersListDiplayModel], Never>()
-    var anyDisplayDataUpdatedPublisher: AnyPublisher<[UsersListDiplayModel], Never> {
+    private let displayDataUpdatedPublisher = PassthroughSubject<[UsersListDisplayModel], Never>()
+    var anyDisplayDataUpdatedPublisher: AnyPublisher<[UsersListDisplayModel], Never> {
         self.displayDataUpdatedPublisher.eraseToAnyPublisher()
     }
     
@@ -38,7 +44,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
     
     // MARK: - Methods
     
-    func saveUsersData(_ userInfo: UsersListDiplayModel) {
+    func saveUsersData(_ userInfo: UsersListDisplayModel) {
         Task {
             do {
                 try await self.coreDataService.saveUser(
@@ -72,15 +78,17 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
     }
     
     private func getUsersDataAccordingConnection(_ isConnected: Bool) {
-        let apiEndpoint = "https://jsonplaceholder.typicode.com/users"
-        
         Task {
             do {
                 let usersData = try await self.coreDataService.fetchUsers()
                 var persistentData = self.prepareUserDisplayData(from: usersData)
                 
                 if isConnected {
-                    let responseData: [UserModel] = try await self.networkService.requestData(toEndPoint: apiEndpoint, httpMethod: .get)
+                    let responseData: [UserModel] = try await self.networkService.requestData(
+                        toEndPoint: ApiUrls.users.rawValue,
+                        httpMethod: .get
+                    )
+                    
                     let updatedResponseData = self.updateResponseData(responseData)
                     
                     updatedResponseData.forEach { uploadedData in
@@ -105,12 +113,12 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         }
     }
     
-    private func prepareUserDisplayData(from coreDataData: [NSManagedObject]) -> [UsersListDiplayModel] {
-        var result = [UsersListDiplayModel]()
+    private func prepareUserDisplayData(from coreDataData: [NSManagedObject]) -> [UsersListDisplayModel] {
+        var result = [UsersListDisplayModel]()
         
         coreDataData.forEach { managedObject in
             result.append(
-                UsersListDiplayModel(
+                UsersListDisplayModel(
                     username: managedObject.value(forKey: CoreDataStrings.attributeUserName) as? String ?? String(),
                     email: managedObject.value(forKey: CoreDataStrings.attributeEmail) as? String ?? String(),
                     city: managedObject.value(forKey: CoreDataStrings.attributeCity) as? String ?? String(),
@@ -123,12 +131,12 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         return result
     }
         
-    private func updateResponseData(_ responseData: [UserModel]) -> [UsersListDiplayModel] {
-        var result = [UsersListDiplayModel]()
+    private func updateResponseData(_ responseData: [UserModel]) -> [UsersListDisplayModel] {
+        var result = [UsersListDisplayModel]()
         
         responseData.forEach {
             result.append(
-                UsersListDiplayModel(
+                UsersListDisplayModel(
                     username: $0.username,
                     email: $0.email,
                     city: $0.address.city,
@@ -141,7 +149,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         return result
     }
     
-    private func saveNewData(_ data: UsersListDiplayModel) {
+    private func saveNewData(_ data: UsersListDisplayModel) {
         Task {
             do {
                 try await self.coreDataService.saveUser(UserModel(username: data.username, email: data.email, address: Address(city: data.city, street: data.street)))
@@ -153,7 +161,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         }
     }
     
-    func deleteUser(_ user: UsersListDiplayModel) {
+    func deleteUser(_ user: UsersListDisplayModel) {
         Task {
             do {
                 try? self.coreDataService.deleteUser(user)

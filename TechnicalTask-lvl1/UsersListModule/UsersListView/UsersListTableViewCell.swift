@@ -23,6 +23,12 @@ final class UsersListTableViewCell: UITableViewCell {
         static let userDetailsWidthCoeff: ConstraintMultiplierTarget = 1.8
     }
     
+    // MARK: - Edges
+    
+    private enum UsersListEdgeInsets {
+        static let cellStackView = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
     // MARK: - GUI
 
     private lazy var userNameLabel: UILabel = {
@@ -148,7 +154,7 @@ private extension UsersListTableViewCell {
 // MARK: - Set cell display data
 
 extension UsersListTableViewCell {
-    func setCellDisplayData(_ user: UsersListDiplayModel) {
+    func setCellDisplayData(_ user: UsersListDisplayModel) {
         self.userNameLabel.text = user.username
         self.userEmailLabel.text = user.email
         self.cityNameLabel.text = user.city

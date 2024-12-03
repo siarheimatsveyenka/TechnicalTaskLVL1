@@ -21,6 +21,7 @@ final class UsersListViewController: UIViewController {
     
     private var viewModel: UsersListViewModelProtocol
     private var cancellables: Set<AnyCancellable> = []
+    var isShown = false
     
     // MARK: - GUI
     
@@ -34,13 +35,13 @@ final class UsersListViewController: UIViewController {
     
     private lazy var connectionAlert: UIAlertController = {
         let alert = UIAlertController(
-            title: "Warning",
-            message: "NO CONNECTION",
+            title: UsersListStrings.connectionErrorAlertTitle,
+            message: UsersListStrings.connectionErrorAlertMessage,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(
-                title: "Ok",
+            title: UsersListStrings.connectionErrorAlertButtonTitle,
                 style: .cancel,
                 handler: nil
             )
@@ -86,7 +87,7 @@ final class UsersListViewController: UIViewController {
         
         self.binding()
         self.setupLayout()
-        self.viewModel.readyToDisplay()
+        self.viewModel.startDataLoading()
     }
 }
 
@@ -159,7 +160,7 @@ private extension UsersListViewController {
             }
             .store(in: &self.cancellables)
         
-        self.viewModel.anyDisplayDataUpdatedPublisherPublisher
+        self.viewModel.anyDisplayDataUpdatedPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 guard let self else { return }
@@ -174,15 +175,18 @@ private extension UsersListViewController {
             .sink { [weak self] isShow in
                 guard let self else { return }
                 if isShow {
-                    DispatchQueue.main.async {
-                        self.present(
-                            self.connectionAlert,
-                            animated: true,
-                            completion: nil
-                        )
-                    }
+                    if self.isShown { return }
+                    self.isShown = true
+                    self.navigationItem.title = UsersListStrings.offlineNavTitle
+                    self.present(
+                        self.connectionAlert,
+                        animated: true,
+                        completion: nil
+                    )
                 } else {
-                    self.connectionAlert.removeFromParent()
+                    self.isShown = false
+                    self.navigationItem.title = UsersListStrings.navTitle
+                    self.connectionAlert.dismiss(animated: true)
                 }
             }
             .store(in: &self.cancellables)
@@ -198,7 +202,6 @@ private extension UsersListViewController {
     
     func handleAddButtonTapped() {
         let userViewModel = UserViewModel(
-            inputedDataCheker: ManuallyInputedDataCheker(),
             currentEmailsArray: self.viewModel.prepareEmailsForChecking()
         )
         let userViewController = UserViewController(viewModel: userViewModel)
@@ -237,7 +240,7 @@ extension UsersListViewController: UITableViewDataSource {
         guard let cell: UsersListTableViewCell = tableView.dequeueReusableCell(for: indexPath) else { return UITableViewCell() }
         let user = self.viewModel.displayData[indexPath.row]
         cell.setCellDisplayData(user)
-        self.viewModel.displayData[indexPath.row].isAnimatingNeeded = false
+        self.viewModel.displayData[indexPath.row].isAnimationNeeded = false
         return cell
     }
     
@@ -257,9 +260,9 @@ extension UsersListViewController: UITableViewDataSource {
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let userData = self.viewModel.displayData[indexPath.row]
-        let addressHeaderTextHeight: CGFloat = UsersListCellStrings.addressLabelTitle.heightForText(isBold: true) + (Sizes.cellTextOffset * 3)
+        let addressHeaderTextHeight: CGFloat = UsersListCellStrings.addressLabelTitle.heightForText(isBold: true) + (Sizes.cellTextOffset * 2)
         let cityNameTextHeight: CGFloat = userData.city.heightForText() + Sizes.cellTextOffset
-        let streetNameTextHeight: CGFloat = userData.street.heightForText() + Sizes.cellTextOffset
+        let streetNameTextHeight: CGFloat = userData.street.heightForText() + (Sizes.cellTextOffset * 2)
         let totalHeight = addressHeaderTextHeight + cityNameTextHeight + streetNameTextHeight
         return totalHeight
     }

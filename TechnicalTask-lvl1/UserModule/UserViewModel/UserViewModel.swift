@@ -12,22 +12,20 @@ final class UserViewModel: UserViewModelProtocol {
     
     // MARK: - Parameters
     
-    private let inputedDataCheker: ManuallyInputedDataChekerProtocol
     private let currentEmailsArray: [String]
     private var userInfo = UsersListDiplayModel(
         username: String(),
         email: String(),
         city: String(),
         street: String(),
-        isAnimatingNeeded: true
+        isAnimationNeeded: true
     )
     
     var userInfoClosure: ((UsersListDiplayModel) -> ())?
     
     // MARK: - Initialization
     
-    init(inputedDataCheker: ManuallyInputedDataChekerProtocol, currentEmailsArray: [String]) {
-        self.inputedDataCheker = inputedDataCheker
+    init(currentEmailsArray: [String]) {
         self.currentEmailsArray = currentEmailsArray
     }
     
@@ -51,7 +49,7 @@ final class UserViewModel: UserViewModelProtocol {
     // MARK: - Events
     
     func saveUserInfoButtonTapped() {
-        guard self.inputedDataCheker.isInputedDataValid(self.userInfo) else { return }
+        guard self.isInputedDataValid(self.userInfo) else { return }
         if self.currentEmailsArray.contains(self.userInfo.email) {
             self.userExistPublisher.send()
         } else {
@@ -65,7 +63,7 @@ final class UserViewModel: UserViewModelProtocol {
     }
     
     func userEmailUpdated(_ userEmail: String) {
-        self.inputedDataCheker.isValidEmailComplex(userEmail)
+        userEmail.isValidEmailComplex()
         ? self.emailTextFieldColorPublisher.send(.black)
         : self.emailTextFieldColorPublisher.send(.red)
         
@@ -78,5 +76,16 @@ final class UserViewModel: UserViewModelProtocol {
     
     func streetNameUpdated(_ streetName: String) {
         self.userInfo.street = streetName
+    }
+    
+    func isInputedDataValid(_ userInfo: UsersListDiplayModel) -> Bool {
+        if userInfo.email.isValidEmailComplex() &&
+            !userInfo.username.isEmpty &&
+            !userInfo.city.isEmpty &&
+            !userInfo.street.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 }

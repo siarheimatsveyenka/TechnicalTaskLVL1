@@ -19,7 +19,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
     private var cancellables: Set<AnyCancellable> = []
     
     private let displayDataUpdatedPublisher = PassthroughSubject<[UsersListDiplayModel], Never>()
-    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<[UsersListDiplayModel], Never> {
+    var anyDisplayDataUpdatedPublisher: AnyPublisher<[UsersListDiplayModel], Never> {
         self.displayDataUpdatedPublisher.eraseToAnyPublisher()
     }
     
@@ -71,14 +71,16 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
         self.internetChecker.startChecking()
     }
     
-    func getUsersDataAccordingConnection(_ isConnected: Bool) {
+    private func getUsersDataAccordingConnection(_ isConnected: Bool) {
+        let apiEndpoint = "https://jsonplaceholder.typicode.com/users"
+        
         Task {
             do {
                 let usersData = try await self.coreDataService.fetchUsers()
                 var persistentData = self.prepareUserDisplayData(from: usersData)
                 
                 if isConnected {
-                    let responseData: [UserModel] = try await self.networkService.requestData(toEndPoint: ApiUrls.users, httpMethod: .get)
+                    let responseData: [UserModel] = try await self.networkService.requestData(toEndPoint: apiEndpoint, httpMethod: .get)
                     let updatedResponseData = self.updateResponseData(responseData)
                     
                     updatedResponseData.forEach { uploadedData in
@@ -113,7 +115,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
                     email: managedObject.value(forKey: CoreDataStrings.attributeEmail) as? String ?? String(),
                     city: managedObject.value(forKey: CoreDataStrings.attributeCity) as? String ?? String(),
                     street: managedObject.value(forKey: CoreDataStrings.attributeStreet) as? String ?? String(),
-                    isAnimatingNeeded: true
+                    isAnimationNeeded: true
                 )
             )
         }
@@ -131,7 +133,7 @@ final class UpdatingUsersDataFacade: UpdatingUsersDataFacadeProtocol {
                     email: $0.email,
                     city: $0.address.city,
                     street: $0.address.street,
-                    isAnimatingNeeded: true
+                    isAnimationNeeded: true
                 )
             )
         }

@@ -6,7 +6,6 @@
   
 */
 
-"urls.users" = "https://jsonplaceholder.typicode.com/users";
 "coreData.modelName" = "UserPersistenceModel";
 "coreData.entityName" = "User";
 "coreData.attributeUserName" = "userName";
@@ -14,6 +13,7 @@
 "coreData.attributeCity" = "city";
 "coreData.attributeStreet" = "street";
 "usersListScreen.navTitle" = "Users list";
+"usersListScreen.offlineNavTitle" = "Users list - OFFLINE MODE";
 "usersListScreen.tableViewTitle" = "Users details";
 "userScreen.navTitle" = "Add new user";
 "userScreen.saveButtonTitle" = "Save";
@@ -22,6 +22,10 @@
 "userScreen.userEmailInputViewTitle" = "User email:";
 "userScreen.cityNameInputViewTitle" = "City name:";
 "userScreen.streetNameInputViewTitle" = "Street name:";
-"userScreen.streetNameInputViewTitle" = "Street name:";
 "usersListCell.addressLabelTitle" = "Address:";
-"userScreen.userErrorTitle" = "Such user alredy exist";
+"userScreen.userErrorAlertMessage" = "Such user alredy exist";
+"userScreen.userErrorAlertTitle" = "WARNING!";
+"userScreen.userErrorAlertButtonTitle" = "OK!";
+"usersListScreen.connectionErrorAlertMessage" = "No internet connection, please connect to internet or continue in offline mode.";
+"usersListScreen.connectionErrorAlertTitle" = "Check internet connection!";
+"usersListScreen.connectionErrorAlertButtonTitle" = "OK";

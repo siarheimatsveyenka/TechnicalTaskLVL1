@@ -12,10 +12,10 @@ protocol UsersListViewModelProtocol {
     var displayData: [UsersListDiplayModel] { get set }
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> { get }
     var anyAddButtonTappedPublisher: AnyPublisher<Void, Never> { get }
-    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<Void, Never> { get }
+    var anyDisplayDataUpdatedPublisher: AnyPublisher<Void, Never> { get }
     var anyIsShowingInternetErrorPublisher: AnyPublisher<Bool, Never> { get }
     
-    func readyToDisplay()
+    func startDataLoading()
     func addButtonTapped()
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel)
     func prepareEmailsForChecking() -> [String]

@@ -9,10 +9,7 @@ import UIKit
 
 extension String {
     func heightForText(isBold: Bool = false) -> CGFloat {
-        let font: UIFont = isBold
-        ? .systemFont(ofSize: 15, weight: .bold)
-        : .systemFont(ofSize: 15)
-        
+        let font: UIFont = .systemFont(ofSize: 15, weight: isBold ? .bold : .regular)
         let textAttributes = [NSAttributedString.Key.font: font]
         let textSize = self.size(withAttributes: textAttributes)
         return textSize.height

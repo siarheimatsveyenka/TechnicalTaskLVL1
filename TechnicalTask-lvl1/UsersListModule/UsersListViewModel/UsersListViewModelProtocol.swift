@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol UsersListViewModelProtocol {
-    var displayData: [UsersListDiplayModel] { get set }
+    var displayData: [UsersListDisplayModel] { get set }
     var anyLoaderIsActivePublisher: AnyPublisher<Bool, Never> { get }
     var anyAddButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     var anyDisplayDataUpdatedPublisher: AnyPublisher<Void, Never> { get }
@@ -17,7 +17,7 @@ protocol UsersListViewModelProtocol {
     
     func startDataLoading()
     func addButtonTapped()
-    func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel)
+    func handleAddedManuallyUserInfo(_ userInfo: UsersListDisplayModel)
     func prepareEmailsForChecking() -> [String]
     func pullToRefresh()
     func userDeletingActivatedWithIndex(_ index: Int)

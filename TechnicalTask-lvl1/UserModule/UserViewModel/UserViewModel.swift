@@ -13,7 +13,7 @@ final class UserViewModel: UserViewModelProtocol {
     // MARK: - Parameters
     
     private let currentEmailsArray: [String]
-    private var userInfo = UsersListDiplayModel(
+    private var userInfo = UsersListDisplayModel(
         username: String(),
         email: String(),
         city: String(),
@@ -21,7 +21,7 @@ final class UserViewModel: UserViewModelProtocol {
         isAnimationNeeded: true
     )
     
-    var userInfoClosure: ((UsersListDiplayModel) -> ())?
+    var userInfoClosure: ((UsersListDisplayModel) -> ())?
     
     // MARK: - Initialization
     
@@ -63,9 +63,11 @@ final class UserViewModel: UserViewModelProtocol {
     }
     
     func userEmailUpdated(_ userEmail: String) {
-        userEmail.isValidEmailComplex()
-        ? self.emailTextFieldColorPublisher.send(.black)
-        : self.emailTextFieldColorPublisher.send(.red)
+        self.emailTextFieldColorPublisher.send(
+            userEmail.isValidEmailComplex()
+            ? .black
+            : .red
+        )
         
         self.userInfo.email = userEmail
     }
@@ -78,14 +80,10 @@ final class UserViewModel: UserViewModelProtocol {
         self.userInfo.street = streetName
     }
     
-    func isInputedDataValid(_ userInfo: UsersListDiplayModel) -> Bool {
-        if userInfo.email.isValidEmailComplex() &&
-            !userInfo.username.isEmpty &&
-            !userInfo.city.isEmpty &&
-            !userInfo.street.isEmpty {
-            return true
-        } else {
-            return false
-        }
+    func isInputedDataValid(_ userInfo: UsersListDisplayModel) -> Bool {
+        userInfo.email.isValidEmailComplex() &&
+        !userInfo.username.isEmpty &&
+        !userInfo.city.isEmpty &&
+        !userInfo.street.isEmpty
     }
 }

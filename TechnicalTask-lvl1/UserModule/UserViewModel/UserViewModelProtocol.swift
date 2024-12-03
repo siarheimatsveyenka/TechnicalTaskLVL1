@@ -12,7 +12,7 @@ protocol UserViewModelProtocol {
     var anySaveUserInfoButtonTappedPublisher: AnyPublisher<Void, Never> { get }
     var anyEmailTextFieldColorPublisher: AnyPublisher<UIColor, Never> { get }
     var anyUserExistPublisher: AnyPublisher<Void, Never> { get }
-    var userInfoClosure: ((UsersListDiplayModel) -> ())? { get }
+    var userInfoClosure: ((UsersListDisplayModel) -> ())? { get }
     
     func saveUserInfoButtonTapped()
     func userNameUpdated(_ userName: String)

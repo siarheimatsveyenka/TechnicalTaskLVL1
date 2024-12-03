@@ -21,6 +21,12 @@ final class UserViewController: UIViewController {
         static let buttonWidthCoeff: ConstraintMultiplierTarget = 0.5
     }
     
+    // MARK: - Edges
+    
+    private enum UserEdgeInsets {
+        static let userInfoStackView = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+    }
+    
     // MARK: - Parameters
     
     private var viewModel: UserViewModelProtocol

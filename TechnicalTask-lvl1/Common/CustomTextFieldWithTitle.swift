@@ -16,7 +16,7 @@ final class CustomTextFieldWithTitle: UIView {
         static let topOffset: CGFloat = 10.0
         static let borderWidth: CGFloat = 2.0
         static let cornerRadius: CGFloat = 15.0
-        static let heightCoeff: ConstraintMultiplierTarget = 0.5
+        static let heightMultiplier: ConstraintMultiplierTarget = 0.5
     }
     
     // MARK: - Parameters
@@ -80,7 +80,7 @@ private extension CustomTextFieldWithTitle {
         self.textField.snp.makeConstraints {
             $0.top.equalTo(self.label.snp.bottom).offset(Sizes.topOffset)
             $0.left.right.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(Sizes.heightCoeff)
+            $0.height.equalToSuperview().multipliedBy(Sizes.heightMultiplier)
         }
     }
 }

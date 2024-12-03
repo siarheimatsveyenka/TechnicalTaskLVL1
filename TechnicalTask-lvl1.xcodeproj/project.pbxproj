@@ -15,8 +15,6 @@
 		4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */; };
 		4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */; };
 		4949D6912CF622980070E932 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6902CF622980070E932 /* UITextField+Extension.swift */; };
-		4949D69D2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D69C2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift */; };
-		4949D69F2CF631AE0070E932 /* ManuallyInputedDataCheker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D69E2CF631AE0070E932 /* ManuallyInputedDataCheker.swift */; };
 		4949D6AA2CF637C10070E932 /* UpdatingUsersDataFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6A92CF637C10070E932 /* UpdatingUsersDataFacade.swift */; };
 		4949D6AC2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949D6AB2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift */; };
 		495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */; };
@@ -35,7 +33,6 @@
 		49B1936E2CF4B5220083E576 /* UsersListDiplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1936D2CF4B5220083E576 /* UsersListDiplayModel.swift */; };
 		49B193752CF4B7390083E576 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49B193742CF4B7390083E576 /* SnapKit */; };
 		49B193782CF4BC370083E576 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193772CF4BC370083E576 /* UITableView+Extension.swift */; };
-		49B1937A2CF4BC730083E576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193792CF4BC730083E576 /* UIView+Extension.swift */; };
 		49B193812CF4CA8A0083E576 /* UsersListEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193802CF4CA8A0083E576 /* UsersListEdgeInsets.swift */; };
 		49B193832CF4CEDD0083E576 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B193822CF4CEDD0083E576 /* String+Extension.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
@@ -54,8 +51,6 @@
 		4949D67F2CF5DF3E0070E932 /* UserEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEdgeInsets.swift; sourceTree = "<group>"; };
 		4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldWithTitle.swift; sourceTree = "<group>"; };
 		4949D6902CF622980070E932 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		4949D69C2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyInputedDataChekerProtocol.swift; sourceTree = "<group>"; };
-		4949D69E2CF631AE0070E932 /* ManuallyInputedDataCheker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyInputedDataCheker.swift; sourceTree = "<group>"; };
 		4949D6A92CF637C10070E932 /* UpdatingUsersDataFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingUsersDataFacade.swift; sourceTree = "<group>"; };
 		4949D6AB2CF637D20070E932 /* UpdatingUsersDataFacadeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingUsersDataFacadeProtocol.swift; sourceTree = "<group>"; };
 		495F5E3C2CF4797E00E6B71A /* UsersListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -73,7 +68,6 @@
 		49B1935E2CF498B10083E576 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		49B1936D2CF4B5220083E576 /* UsersListDiplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListDiplayModel.swift; sourceTree = "<group>"; };
 		49B193772CF4BC370083E576 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		49B193792CF4BC730083E576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		49B193802CF4CA8A0083E576 /* UsersListEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListEdgeInsets.swift; sourceTree = "<group>"; };
 		49B193822CF4CEDD0083E576 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,23 +135,6 @@
 				4949D6822CF5E69E0070E932 /* CustomTextFieldWithTitle.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		4949D69A2CF6313F0070E932 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				4949D69B2CF6315C0070E932 /* ManuallyInputedDataChecker */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		4949D69B2CF6315C0070E932 /* ManuallyInputedDataChecker */ = {
-			isa = PBXGroup;
-			children = (
-				4949D69C2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift */,
-				4949D69E2CF631AE0070E932 /* ManuallyInputedDataCheker.swift */,
-			);
-			path = ManuallyInputedDataChecker;
 			sourceTree = "<group>";
 		};
 		4949D6A82CF637640070E932 /* UpdatingUsersDataFacade */ = {
@@ -248,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				49B193772CF4BC370083E576 /* UITableView+Extension.swift */,
-				49B193792CF4BC730083E576 /* UIView+Extension.swift */,
 				49B193822CF4CEDD0083E576 /* String+Extension.swift */,
 				4949D6902CF622980070E932 /* UITextField+Extension.swift */,
 				4922A39E2CF8969000B75928 /* UIViewController+Extension.swift */,
@@ -288,7 +264,6 @@
 				49B193762CF4BC230083E576 /* Extensions */,
 				4949D6812CF5E67E0070E932 /* Common */,
 				49B1934A2CF493780083E576 /* Constants */,
-				4949D69A2CF6313F0070E932 /* Helpers */,
 				49B193442CF490860083E576 /* Services */,
 				49B193412CF48D370083E576 /* Models */,
 				495F5E322CF4789000E6B71A /* UsersListModule */,
@@ -411,7 +386,6 @@
 				495F5E3F2CF4798F00E6B71A /* UsersListViewModel.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				4922A39F2CF8969000B75928 /* UIViewController+Extension.swift in Sources */,
-				4949D69D2CF6319B0070E932 /* ManuallyInputedDataChekerProtocol.swift in Sources */,
 				495F5E3D2CF4797E00E6B71A /* UsersListViewModelProtocol.swift in Sources */,
 				49B1935F2CF498B10083E576 /* CoreDataService.swift in Sources */,
 				49B1935B2CF497490083E576 /* UserPersistenceModel.xcdatamodeld in Sources */,
@@ -420,7 +394,6 @@
 				4949D6802CF5DF3E0070E932 /* UserEdgeInsets.swift in Sources */,
 				4949D67D2CF528890070E932 /* UserViewModel.swift in Sources */,
 				4949D6912CF622980070E932 /* UITextField+Extension.swift in Sources */,
-				4949D69F2CF631AE0070E932 /* ManuallyInputedDataCheker.swift in Sources */,
 				49B193582CF496600083E576 /* CoreDataStack.swift in Sources */,
 				49B193392CF486620083E576 /* Strings.swift in Sources */,
 				49B193832CF4CEDD0083E576 /* String+Extension.swift in Sources */,
@@ -428,7 +401,6 @@
 				4949D6AA2CF637C10070E932 /* UpdatingUsersDataFacade.swift in Sources */,
 				4949D6832CF5E69E0070E932 /* CustomTextFieldWithTitle.swift in Sources */,
 				49B193782CF4BC370083E576 /* UITableView+Extension.swift in Sources */,
-				49B1937A2CF4BC730083E576 /* UIView+Extension.swift in Sources */,
 				49B193402CF48C6A0083E576 /* ResourcesTypealias.swift in Sources */,
 				49B193812CF4CA8A0083E576 /* UsersListEdgeInsets.swift in Sources */,
 				49B1935D2CF498A00083E576 /* CoreDataServiceProtocol.swift in Sources */,
@@ -589,6 +561,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8VM9NVFDC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TechnicalTask-lvl1/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -621,6 +594,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J8VM9NVFDC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TechnicalTask-lvl1/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

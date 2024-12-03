@@ -12,5 +12,5 @@ struct UsersListDiplayModel {
     var email: String
     var city: String
     var street: String
-    var isAnimatingNeeded: Bool
+    var isAnimationNeeded: Bool
 }

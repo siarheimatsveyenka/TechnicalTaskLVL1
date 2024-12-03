@@ -13,10 +13,10 @@ final class CustomTextFieldWithTitle: UIView {
     // MARK: - Sizes
     
     private enum Sizes {
-        static let tfTopOffset: CGFloat = 10.0
-        static let tfBorderWidth: CGFloat = 2.0
-        static let tfCornerRadius: CGFloat = 15.0
-        static let tfHeightCoeff: ConstraintMultiplierTarget = 0.5
+        static let topOffset: CGFloat = 10.0
+        static let borderWidth: CGFloat = 2.0
+        static let cornerRadius: CGFloat = 15.0
+        static let heightCoeff: ConstraintMultiplierTarget = 0.5
     }
     
     // MARK: - Parameters
@@ -33,9 +33,9 @@ final class CustomTextFieldWithTitle: UIView {
     
     lazy var textField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderWidth = Sizes.tfBorderWidth
+        textField.layer.borderWidth = Sizes.borderWidth
         textField.clipsToBounds = true
-        textField.layer.cornerRadius = Sizes.tfCornerRadius
+        textField.layer.cornerRadius = Sizes.cornerRadius
         return textField
     }()
     
@@ -78,9 +78,9 @@ private extension CustomTextFieldWithTitle {
         }
         
         self.textField.snp.makeConstraints {
-            $0.top.equalTo(self.label.snp.bottom).offset(Sizes.tfTopOffset)
+            $0.top.equalTo(self.label.snp.bottom).offset(Sizes.topOffset)
             $0.left.right.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(Sizes.tfHeightCoeff)
+            $0.height.equalToSuperview().multipliedBy(Sizes.heightCoeff)
         }
     }
 }

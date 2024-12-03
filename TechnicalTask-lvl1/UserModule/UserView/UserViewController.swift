@@ -216,7 +216,11 @@ private extension UserViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 guard let self else { return }
-                self.showError(message: UserScreenStrings.userErrorTitle)
+                self.showError(
+                    alertTitle: UserScreenStrings.userErrorAlertTitle,
+                    message: UserScreenStrings.userErrorAlertMessage,
+                    buttonTitle: UserScreenStrings.userErrorAlertButtonTitle
+                )
             }
             .store(in: &self.cancellables)
     }

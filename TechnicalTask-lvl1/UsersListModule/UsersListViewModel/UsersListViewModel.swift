@@ -29,7 +29,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     }
     
     private let displayDataUpdatedPublisher = PassthroughSubject<Void, Never>()
-    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<Void, Never> {
+    var anyDisplayDataUpdatedPublisher: AnyPublisher<Void, Never> {
         self.displayDataUpdatedPublisher.eraseToAnyPublisher()
     }
     
@@ -47,26 +47,9 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     
     // MARK: - Events
     
-    func readyToDisplay() {
+    func startDataLoading() {
         self.startLoaderAnimating()
-        
-        
-        self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisherPublisher
-            .sink { [weak self] data in
-                guard let self else { return }
-                self.displayData = data.sorted { $0.username < $1.username }
-                self.displayDataUpdatedPublisher.send()
-            }
-            .store(in: &self.cancellables)
-        
-        self.updatingUsersDataFacade.anyConnectionErrorPublisher
-            .sink { [weak self] isError in
-                guard let self else { return }
-                self.isShowingInternetErrorPublisher.send(isError)
-            }
-            .store(in: &self.cancellables)
-        
-        self.updatingUsersDataFacade.fetchUsersData()
+        self.loadData()
     }
     
     func addButtonTapped() {
@@ -74,15 +57,7 @@ final class UsersListViewModel: UsersListViewModelProtocol {
     }
     
     func pullToRefresh() {
-        self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisherPublisher
-            .sink { [weak self] data in
-                guard let self else { return }
-                self.displayData = data.sorted { $0.username < $1.username }
-                self.displayDataUpdatedPublisher.send()
-            }
-            .store(in: &self.cancellables)
-        
-        self.updatingUsersDataFacade.fetchUsersData()
+        self.loadData()
     }
     
     func handleAddedManuallyUserInfo(_ userInfo: UsersListDiplayModel) {
@@ -107,5 +82,28 @@ final class UsersListViewModel: UsersListViewModelProtocol {
 private extension UsersListViewModel {
     func startLoaderAnimating() {
         self.loaderIsActivePublisher.send(true)
+    }
+}
+
+// MARK: - Load data
+
+private extension UsersListViewModel {
+    func loadData() {
+        self.updatingUsersDataFacade.anyDisplayDataUpdatedPublisher
+            .sink { [weak self] data in
+                guard let self else { return }
+                self.displayData = data.sorted { $0.username < $1.username }
+                self.displayDataUpdatedPublisher.send()
+            }
+            .store(in: &self.cancellables)
+        
+        self.updatingUsersDataFacade.anyConnectionErrorPublisher
+            .sink { [weak self] isError in
+                guard let self else { return }
+                self.isShowingInternetErrorPublisher.send(isError)
+            }
+            .store(in: &self.cancellables)
+        
+        self.updatingUsersDataFacade.fetchUsersData()
     }
 }

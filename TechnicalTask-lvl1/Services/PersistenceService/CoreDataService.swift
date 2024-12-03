@@ -20,7 +20,6 @@ final class CoreDataService: CoreDataServiceProtocol {
         self.coreDataStack.managedContext
     }
     
-    
     // MARK: - Persistence methods
     
     func fetchUsers() async throws -> [NSManagedObject] {
@@ -59,10 +58,10 @@ final class CoreDataService: CoreDataServiceProtocol {
     func deleteUser(_ user: UsersListDiplayModel) throws {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoreDataStrings.entityName)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "\(CoreDataStrings.attributeUserName) == %@", user.username),
-            NSPredicate(format: "\(CoreDataStrings.attributeEmail) == %@", user.email),
-            NSPredicate(format: "\(CoreDataStrings.attributeCity) == %@", user.city),
-            NSPredicate(format: "\(CoreDataStrings.attributeStreet) == %@", user.street)
+//            NSPredicate(format: "\(CoreDataStrings.attributeUserName) == %@", user.username),
+            NSPredicate(format: "\(CoreDataStrings.attributeEmail) == %@", user.email)
+//            NSPredicate(format: "\(CoreDataStrings.attributeCity) == %@", user.city),
+//            NSPredicate(format: "\(CoreDataStrings.attributeStreet) == %@", user.street)
         ])
         
         do {

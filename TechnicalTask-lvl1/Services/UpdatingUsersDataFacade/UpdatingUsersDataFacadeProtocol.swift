@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol UpdatingUsersDataFacadeProtocol {
-    var anyDisplayDataUpdatedPublisherPublisher: AnyPublisher<[UsersListDiplayModel], Never> { get }
+    var anyDisplayDataUpdatedPublisher: AnyPublisher<[UsersListDiplayModel], Never> { get }
     var anyConnectionErrorPublisher: AnyPublisher<Bool, Never> { get }
 
     func fetchUsersData()

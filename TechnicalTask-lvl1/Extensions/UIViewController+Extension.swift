@@ -8,15 +8,15 @@
 import UIKit
 
 extension UIViewController {
-    func showError(message: String) {
+    func showError(alertTitle: String, message: String, buttonTitle: String) {
         let alert = UIAlertController(
-            title: "Warning",
+            title: alertTitle,
             message: message,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(
-                title: "Ok",
+                title: buttonTitle,
                 style: .cancel,
                 handler: nil
             )

@@ -101,7 +101,10 @@ final class UserViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let defaultViewModel = UserViewModel(currentEmailsArray: [])
+        self.viewModel = defaultViewModel
+        
+        super.init(coder: coder)
     }
     
     // MARK: - Lifecycle
@@ -111,12 +114,13 @@ final class UserViewController: UIViewController {
         
         self.binding()
         self.setupLayout()
+        self.setConstraints()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.setConstraints()
+        
     }
 }
 
@@ -151,7 +155,7 @@ private extension UserViewController {
     
     func setConstraints() {
         self.userInfoStackView.snp.makeConstraints {
-            $0.top.equalTo(self.navigationController?.navigationBar.snp.bottom ?? self.view.snp.top).offset(Sizes.userInfoStackOffset)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Sizes.userInfoStackOffset)
             $0.left.right.equalToSuperview().inset(UserEdgeInsets.userInfoStackView)
             $0.height.equalToSuperview().multipliedBy(Sizes.userInfoStackHeightCoeff)
         }

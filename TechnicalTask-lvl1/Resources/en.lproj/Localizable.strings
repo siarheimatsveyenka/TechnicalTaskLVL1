@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  TechnicalTask-lvl1
+
+  Created by Сергей Матвеенко on 25.11.24.
+  
+*/
+
+"coreData.modelName" = "UserPersistenceModel";
+"coreData.entityName" = "User";
+"coreData.attributeUserName" = "userName";
+"coreData.attributeEmail" = "email";
+"coreData.attributeCity" = "city";
+"coreData.attributeStreet" = "street";
+"usersListScreen.navTitle" = "Users list";
+"usersListScreen.offlineNavTitle" = "Users list - OFFLINE MODE";
+"usersListScreen.tableViewTitle" = "Users details";
+"userScreen.navTitle" = "Add new user";
+"userScreen.saveButtonTitle" = "Save";
+"userScreen.infoLabelTitle" = "Provide all info to save user:";
+"userScreen.userNameInputViewTitle" = "User name:";
+"userScreen.userEmailInputViewTitle" = "User email:";
+"userScreen.cityNameInputViewTitle" = "City name:";
+"userScreen.streetNameInputViewTitle" = "Street name:";
+"usersListCell.addressLabelTitle" = "Address:";
+"userScreen.userErrorAlertMessage" = "Such user alredy exist";
+"userScreen.userErrorAlertTitle" = "WARNING!";
+"userScreen.userErrorAlertButtonTitle" = "OK!";
+"usersListScreen.connectionErrorAlertMessage" = "No internet connection, please connect to internet or continue in offline mode.";
+"usersListScreen.connectionErrorAlertTitle" = "Check internet connection!";
+"usersListScreen.connectionErrorAlertButtonTitle" = "OK";
